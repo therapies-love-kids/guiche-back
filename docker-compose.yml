@@ -11,7 +11,7 @@ services:
 
   app:
     build:
-      context: ../../AppData/Local/Temp
+      context: .
       dockerfile: Dockerfile
     volumes:
       - .:/app
