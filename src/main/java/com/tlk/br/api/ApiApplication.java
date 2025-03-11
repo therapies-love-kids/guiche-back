@@ -1,13 +1,13 @@
-package br.guiche.back;
+package com.tlk.br.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GuicheBackApplication {
+public class ApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GuicheBackApplication.class, args);
+		SpringApplication.run(ApiApplication.class, args);
 	}
 
 }
