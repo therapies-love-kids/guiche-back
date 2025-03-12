@@ -1,4 +1,4 @@
-package com.tlk.br.api.domain.entites;
+package com.tlk.br.api.domain.entitites;
 
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
