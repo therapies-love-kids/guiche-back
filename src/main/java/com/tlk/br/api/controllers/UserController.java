@@ -7,6 +7,9 @@ import com.tlk.br.api.domain.dtos.UserDTO;
 import com.tlk.br.api.domain.entitites.User;
 import com.tlk.br.api.services.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/user")
+@Tag(name = "Usuário", description = "API de Usuário")
 public class UserController {
 
     private final UserService UserService;
@@ -23,6 +27,7 @@ public class UserController {
         this.UserService = userService;
     }
     @PostMapping 
+    @Operation(summary = "Criar um novo usuário")
     public ResponseEntity<User> save(@RequestBody UserDTO userDTO) {
         //TODO: process POST request
         return ResponseEntity.status(HttpStatus.CREATED).body(UserService.save(userDTO));
