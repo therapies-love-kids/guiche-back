@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -55,5 +56,11 @@ public class UserController {
     @Operation(summary = "Buscar todos os usu rios")
     public ResponseEntity<List<User>> findAll() {
         return ResponseEntity.ok(UserService.findAll());
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Atualizar um usu rio existente")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(UserService.update(id, userDTO));
     }
 }
