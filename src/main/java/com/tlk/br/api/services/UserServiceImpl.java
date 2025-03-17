@@ -37,9 +37,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(Long id, User UserDTO) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public User update(Long id, UserDTO userDTO) {
+        User user = findById(id);
+        BeanUtils.copyProperties(userDTO, user);
+        return UserRepository.save(user);
     }
 
     @Override
