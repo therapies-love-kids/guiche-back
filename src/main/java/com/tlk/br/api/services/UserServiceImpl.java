@@ -28,26 +28,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        return UserRepository.findAll();
     }
 
     @Override
     public User findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return UserRepository.findById(id).orElseThrow();
     }
 
     @Override
-    public User update(Long id, User UserDTO) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public User update(Long id, UserDTO userDTO) {
+        User user = findById(id);
+        BeanUtils.copyProperties(userDTO, user);
+        return UserRepository.save(user);
     }
 
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        UserRepository.deleteById(id);
     }
     
 }
