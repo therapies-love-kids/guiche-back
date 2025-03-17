@@ -28,8 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+        return UserRepository.findAll();
     }
 
     @Override
