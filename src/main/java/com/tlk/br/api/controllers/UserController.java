@@ -10,6 +10,8 @@ import com.tlk.br.api.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -47,5 +49,11 @@ public class UserController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         UserService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+    
+    @GetMapping
+    @Operation(summary = "Buscar todos os usu rios")
+    public ResponseEntity<List<User>> findAll() {
+        return ResponseEntity.ok(UserService.findAll());
     }
 }
