@@ -45,8 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        UserRepository.deleteById(id);
     }
     
 }
