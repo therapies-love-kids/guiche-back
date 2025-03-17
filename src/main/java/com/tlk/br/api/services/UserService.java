@@ -11,4 +11,5 @@ public interface UserService {
     User findById(Long id);
     User update(Long id,UserDTO userDTO);
     void delete(Long id);
+    boolean validateUserPassword(Long id, String password);
 }
