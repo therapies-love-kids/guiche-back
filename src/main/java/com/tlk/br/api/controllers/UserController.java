@@ -53,13 +53,13 @@ public class UserController {
     }
     
     @GetMapping
-    @Operation(summary = "Buscar todos os usu rios")
+    @Operation(summary = "Buscar todos os usuários")
     public ResponseEntity<List<User>> findAll() {
         return ResponseEntity.ok(UserService.findAll());
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Atualizar um usu rio existente")
+    @Operation(summary = "Atualizar um usuário existente")
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         return ResponseEntity.ok(UserService.update(id, userDTO));
     }
