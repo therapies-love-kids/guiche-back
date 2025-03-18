@@ -64,12 +64,4 @@ public class UserController {
         return ResponseEntity.ok(UserService.update(id, userDTO));
     }
 
-@Operation(summary = "Validar a senha do usuário")
-@PostMapping("/validate-password")
-public ResponseEntity<Boolean> validateUserPassword(@RequestBody UserDTO userDTO) {
-    User user = UserService.findById(userDTO.getId());
-    boolean isValid = user.getPassword().equals(userDTO.getPassword());
-    return ResponseEntity.ok(isValid);
-}
-
 }
