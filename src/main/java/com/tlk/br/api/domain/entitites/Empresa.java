@@ -40,17 +40,6 @@ public class Empresa {
         this.pk = pk;
     }
 
-    public=getGenerationType.IDENTITY)()
-
-    {
-		return this.GenerationType.IDENTITY);
-	}
-
-    public void setGenerationType.IDENTITY)(=GenerationType.IDENTITY))
-    {
-		this.GenerationType.IDENTITY) = GenerationType.IDENTITY);
-	}
-
     public Long getId() {
         return this.id;
     }
