@@ -1,6 +1,9 @@
 package com.tlk.br.api.domain.entitites;
 
 import jakarta.persistence.Table;
+
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,12 +17,15 @@ public class Documento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pk;
     private Boolean ativo;
-    private String nome;
-    private String nome_curto;
+    private Long paciente_id;
+    private Long colaborador_id;
+    private Date data_hora_criacao;
+    private String tipo;
+    private String caminho;
 
     public Documento() {
     }
-    
+
 	public Long getPk() {
 		return this.pk;
 	}
@@ -36,21 +42,48 @@ public class Documento {
 		this.ativo = ativo;
 	}
 
-	public String getNome() {
-		return this.nome;
+	public Long getPaciente_id() {
+		return this.paciente_id;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setPaciente_id(Long paciente_id) {
+		this.paciente_id = paciente_id;
 	}
 
-	public String getNome_curto() {
-		return this.nome_curto;
+	public Long getColaborador_id() {
+		return this.colaborador_id;
 	}
 
-	public void setNome_curto(String nome_curto) {
-		this.nome_curto = nome_curto;
+	public void setColaborador_id(Long colaborador_id) {
+		this.colaborador_id = colaborador_id;
 	}
 
+	public Date getData_hora_criacao() {
+		return this.data_hora_criacao;
+	}
+
+	public void setData_hora_criacao(Date data_hora_criacao) {
+		this.data_hora_criacao = data_hora_criacao;
+	}
+
+	public String getTipo() {
+		return this.tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getCaminho() {
+		return this.caminho;
+	}
+
+	public void setCaminho(String caminho) {
+		this.caminho = caminho;
+	}
+
+
+
+    
 
 }
