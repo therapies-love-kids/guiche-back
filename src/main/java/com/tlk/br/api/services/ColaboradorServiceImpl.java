@@ -3,7 +3,6 @@ package com.tlk.br.api.services;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import com.tlk.br.api.domain.dtos.ColaboradorDTO;
