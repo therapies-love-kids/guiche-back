@@ -5,7 +5,6 @@ import java.util.Date;
 
 public class LacoDTO {
 
-    private Long pk;
     private Long paciente_id;
     private Long responsavel_id;
     private Date data_hora_criacao;
