@@ -47,5 +47,12 @@ public class UserServiceImpl implements UserService {
     public void delete(Long id) {
         UserRepository.deleteById(id);
     }
+
+    
+    @Override
+    public boolean validateUserPassword(Long id, String password) {
+        User user = findById(id);
+        return user.getPassword().equals(password);
+    }
     
 }

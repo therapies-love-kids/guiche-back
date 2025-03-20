@@ -1,0 +1,90 @@
+<mxfile host="65bd71144e">
+    <diagram id="n5dLyqRNmTKyhxqFt0SG" name="casos-uso">
+        <mxGraphModel dx="249" dy="256" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="5" value="Colaborador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="120" width="40" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;endFill=0;rounded=0;fontSize=9;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="260" y="220" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="7" value="Médico" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="280" width="40" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Helvetica;fontSize=9;startArrow=none;startFill=0;endArrow=none;endFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="8" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="260" y="250" as="targetPoint"/>
+                        <mxPoint x="280" y="260" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="300" y="250"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="8" value="Aval. terap." style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="280" width="40" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Helvetica;fontSize=9;startArrow=none;startFill=0;endArrow=none;endFill=0;" parent="1" source="15" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Manter login" style="ellipse;whiteSpace=wrap;html=1;fontSize=9;fontStyle=0" parent="1" vertex="1">
+                    <mxGeometry x="220" y="40" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Helvetica;fontSize=9;startArrow=none;startFill=0;endArrow=none;endFill=0;" parent="1" source="18" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="Ver guichê" style="ellipse;whiteSpace=wrap;html=1;fontSize=9;fontStyle=0" parent="1" vertex="1">
+                    <mxGeometry x="120" y="140" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Helvetica;fontSize=9;startArrow=none;startFill=0;endArrow=none;endFill=0;" parent="1" source="22" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="Ver agendamentos" style="ellipse;whiteSpace=wrap;html=1;fontSize=9;fontStyle=0" parent="1" vertex="1">
+                    <mxGeometry x="360" y="140" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" style="edgeStyle=none;rounded=0;html=1;fontFamily=Comic Sans MS;fontSize=9;endArrow=none;endFill=0;" parent="1" source="29" target="8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;fontFamily=Helvetica;fontSize=9;startArrow=none;startFill=0;endArrow=open;endFill=0;" parent="1" source="29" target="38" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="Indicar terapias" style="ellipse;whiteSpace=wrap;html=1;fontSize=9;fontStyle=0" parent="1" vertex="1">
+                    <mxGeometry x="360" y="300" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Comic Sans MS;fontSize=9;endArrow=open;endFill=0;dashed=1;" parent="1" source="32" target="22" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="Chamar paciente" style="ellipse;whiteSpace=wrap;html=1;fontSize=9;fontStyle=0" parent="1" vertex="1">
+                    <mxGeometry x="520" y="140" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=9;labelBackgroundColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="450" y="155" width="60" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="Gerar documento" style="ellipse;whiteSpace=wrap;html=1;fontSize=9;fontStyle=0" parent="1" vertex="1">
+                    <mxGeometry x="520" y="300" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;&amp;lt;&amp;lt;include&amp;gt;&amp;gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=9;labelBackgroundColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="450" y="315" width="60" height="10" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;fontFamily=Helvetica;fontSize=9;startArrow=none;startFill=0;endArrow=none;endFill=0;dashed=1;" parent="1" source="47" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="340" y="320" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="380" y="290"/>
+                            <mxPoint x="340" y="290"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="51" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;endArrow=none;endFill=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.503;exitY=-0.011;exitDx=0;exitDy=0;exitPerimeter=0;rounded=0;" edge="1" parent="1" source="47" target="22">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="É preciso estar logado" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;labelBackgroundColor=default;fontFamily=Helvetica;fontSize=9;size=20;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="200" width="120" height="80" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
