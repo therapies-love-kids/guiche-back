@@ -26,6 +26,32 @@ public class AgendamentoDTO {
     public void setEspecialista_colaborador_id(Long especialista_colaborador_id) {
         this.especialista_colaborador_id = especialista_colaborador_id;
     }
+
+    
+    public Long getPaciente_id() {
+        return this.paciente_id;
+    }
+
+    public void setPaciente_id(Long paciente_id) {
+        this.paciente_id = paciente_id;
+    }
+
+    public Long getRecepcionista_colaborador_id() {
+        return this.recepcionista_colaborador_id;
+    }
+
+    public void setRecepcionista_colaborador_id(Long recepcionista_colaborador_id) {
+        this.recepcionista_colaborador_id = recepcionista_colaborador_id;
+    }
+
+    public Long getResponsavel_id() {
+        return this.responsavel_id;
+    }
+
+    public void setResponsavel_id(Long responsavel_id) {
+        this.responsavel_id = responsavel_id;
+    }
+
     public String getUnidade_prefixo() {
         return this.unidade_prefixo;
     }
