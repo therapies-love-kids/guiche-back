@@ -36,4 +36,9 @@ public class ConvenioDTO {
         this.nome_curto = nome_curto;
     }
 
+    public Long getId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getId'");
+    }
+
 }
