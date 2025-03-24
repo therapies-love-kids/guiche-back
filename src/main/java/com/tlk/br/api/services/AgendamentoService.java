@@ -10,5 +10,5 @@ public interface AgendamentoService {
     List<Agendamento> findAll();
     Agendamento findById(Long id);
     void delete(Long Id);
-    Agendamento update(AgendamentoDTO agendamentoDTO);
+    Agendamento update(Long id, AgendamentoDTO agendamentoDTO);
 }
