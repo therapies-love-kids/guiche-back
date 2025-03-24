@@ -1,5 +1,7 @@
 package com.tlk.br.api.services;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -46,23 +48,23 @@ public class EmpresaServiceImpl implements EmpresaService {
     }
 
     @Override
-    public Empresa findByRazaoSocial(String razaoSocial) {
-        return empresaRepository.findByRazaoSocial(razaoSocial).orElseThrow();
+    public Empresa findByrazao_social(String razao_social) {
+        return empresaRepository.findByRazaoSocial(razao_social).orElseThrow();
     }
 
     @Override
-    public Empresa findByNomeFantasia(String nomeFantasia) {
-        return empresaRepository.findByNomeFantasia(nomeFantasia).orElseThrow();
+    public List<Empresa> findBynome_fantasia(String nome_fantasia) {
+        return empresaRepository.findByNomeFantasia(nome_fantasia);
     }
 
-    @Override
-    public Empresa findByEmail(String email) {
-        return empresaRepository.findByEmail(email).orElseThrow();
-    }
+    // @Override
+    // public Empresa findByEmail(String email) {
+    //     return empresaRepository.findByEmail(email).orElseThrow();
+    // }
 
     @Override
-    public Empresa findByTelefone(String telefone) {
-        return empresaRepository.findByTelefone(telefone).orElseThrow();
+    public Empresa findByNumero(String numero) {
+        return empresaRepository.findByNumero(numero).orElseThrow();
     }
 
     @Override
