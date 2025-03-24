@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class CaminhoDTO {
 
+    private Long pk;
     private Long usuario_id;
     private Date data_hora_criacao;
     private boolean ativo;
@@ -13,6 +14,12 @@ public class CaminhoDTO {
 
     public CaminhoDTO() {
     }
+
+
+    public Long getId() {
+        return this.pk;
+    }
+
 
     public Long getUsuario_id() {
         return this.usuario_id;
