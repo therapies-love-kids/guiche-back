@@ -41,7 +41,7 @@ public class AgendamentoServiceImpl implements AgendamentoService {
     }
 
     @Override
-    public Agendamento update(AgendamentoDTO agendamentoDTO) {
+    public Agendamento update(Long Id, AgendamentoDTO agendamentoDTO) {
         Agendamento agendamento = findById(agendamentoDTO.getId());
         BeanUtils.copyProperties(agendamentoDTO, agendamento);
         return agendamentoRepository.save(agendamento);
