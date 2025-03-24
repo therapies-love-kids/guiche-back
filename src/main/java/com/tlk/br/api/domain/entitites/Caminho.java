@@ -2,6 +2,7 @@ package com.tlk.br.api.domain.entitites;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,8 +16,10 @@ public class Caminho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pk;
-    private Long usuario_id;
-    private Date data_hora_criacao;
+    @Column (name = "usuario_id")
+    private Long usuarioId;
+    @Column (name = "data_hora_criacao")
+    private Date dataHoraCriacao;
     private boolean ativo;
     private String caminho;
     private boolean editavel;
@@ -33,20 +36,20 @@ public class Caminho {
         this.pk = pk;
     }
 
-    public Long getUsuario_id() {
-        return this.usuario_id;
+    public Long getUsuarioId() {
+        return this.usuarioId;
     }
 
-    public void setUsuario_id(Long usuario_id) {
-        this.usuario_id = usuario_id;
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
-    public Date getData_hora_criacao() {
-        return this.data_hora_criacao;
+    public Date getDataHoraCriacao() {
+        return this.dataHoraCriacao;
     }
 
-    public void setData_hora_criacao(Date data_hora_criacao) {
-        this.data_hora_criacao = data_hora_criacao;
+    public void setDataHoraCriacao(Date dataHoraCriacao) {
+        this.dataHoraCriacao = dataHoraCriacao;
     }
 
     public boolean isAtivo() {
