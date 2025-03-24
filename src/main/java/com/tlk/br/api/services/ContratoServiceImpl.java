@@ -40,8 +40,8 @@ public class ContratoServiceImpl implements ContratoService {
         contratoRepository.deleteById(contratoDTO.getId());
     }
 
-    @Override
-    public Contrato findByPacienteId(Long id) {
-        return contratoRepository.findByPacienteId(id).orElseThrow();
-    }
+    // @Override
+    // public Contrato findByPacienteId(Long id) {
+    //     return contratoRepository.findByPacienteId(id).orElseThrow();
+    // }
 }
