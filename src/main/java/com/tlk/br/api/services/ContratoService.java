@@ -9,5 +9,5 @@ public interface ContratoService {
     Contrato update(ContratoDTO contratoDTO);
     Contrato findById(Long id);
     void delete(ContratoDTO contratoDTO);
-    Contrato findByPacienteId(Long id);
+    // Contrato findByPacienteId(Long id);
 }
