@@ -9,10 +9,7 @@ import com.tlk.br.api.domain.entitites.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    boolean validateUserPassword(Long id, String password);
+    Usuario findByNome(String nome);
 
-    void activateUser(Long id);
-
-    void deactivateUser(Long id);
 
 }
