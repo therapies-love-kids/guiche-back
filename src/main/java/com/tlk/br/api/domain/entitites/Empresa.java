@@ -13,7 +13,6 @@ public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pk;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long diretor_colaborador_id;
     private boolean ativo;
