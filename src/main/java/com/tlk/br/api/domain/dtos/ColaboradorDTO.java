@@ -2,6 +2,8 @@ package com.tlk.br.api.domain.dtos;
 
 import java.util.Date;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class ColaboradorDTO {
     private String empresa_unidade_prefixo;
     private boolean ativo;
@@ -87,6 +89,7 @@ public class ColaboradorDTO {
         this.local_nascimento = local_nascimento;
     }
 
+    @Schema(description = "Nome completo do pai", example = "Hugo Cauê José Caldeira", required = true)
     public String getNome_pai() {
         return this.nome_pai;
     }
