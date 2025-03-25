@@ -15,7 +15,6 @@ public class Colaborador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pk;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String empresa_unidade_prefixo;
     private boolean ativo;
