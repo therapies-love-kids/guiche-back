@@ -7,7 +7,7 @@ import com.tlk.br.api.domain.entitites.Usuario;
 
 public interface UsuarioService {
 
-    boolean validateUserPassword(Long id, String password);
+    boolean validateUserPassword(String nome, String password);
     Usuario save(UsuarioDTO usuarioDTO);
     List<Usuario> findAll();
     Usuario findById(Long id);
