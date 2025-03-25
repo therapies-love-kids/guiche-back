@@ -2,14 +2,29 @@ package com.tlk.br.api.domain.dtos;
 
 import java.util.Date;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class CaminhoDTO {
 
+    @Schema(description = "Id do caminho", example = "1", required = true)
     private Long pk;
+
+    @Schema(description = "Id do usuario", example = "1", required = true)
     private Long usuario_id;
+
+    @Schema(description = "Data e hora de criacao", example = "2000-01-01", required = true)
     private Date data_hora_criacao;
+
+    @Schema(description = "Ativo", example = "true", required = true)
     private boolean ativo;
+
+    @Schema(description = "Caminho", example = "caminho", required = true)
     private String caminho;
+
+    @Schema(description = "Editavel", example = "true", required = true)
     private boolean editavel;
+
+    @Schema(description = "Leitura", example = "true", required = true)
     private boolean leitura;
 
     public CaminhoDTO() {
