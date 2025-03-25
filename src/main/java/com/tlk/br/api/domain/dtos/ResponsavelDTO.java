@@ -1,16 +1,37 @@
 package com.tlk.br.api.domain.dtos;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 
 public class ResponsavelDTO {
+
+    @Schema(description = "Id do responsavel", example = "1", required = true)
     private Long id;
+
+    @Schema(description = "Ativo", example = "true", required = true)
     private boolean ativo;
+
+    @Schema(description = "Nome completo", example = "Hugo Cauê José Caldeira", required = true)
     private String nome;
+
+    @Schema(description = "Estado civil", example = "Solteiro", required = true)
     private String estado_civil;
+
+    @Schema(description = "Profissao", example = "Profissional", required = true)
     private String profissao;
+
+    @Schema(description = "CPF", example = "12345678900", required = true)
     private String cpf;
+
+    @Schema(description = "RG", example = "123456789", required = true)
     private String rg;
+
+    @Schema(description = "Celular", example = "11999999999", required = true)
     private String celular;
+
+    @Schema(description = "Email", example = "Hb9dX@example.com", required = true)
     private String email;
+
+    @Schema(description = "Contatos extras", example = "Pombo correio: Jeremias", required = true)
     private String contatos_extras;
 
     public ResponsavelDTO() {
