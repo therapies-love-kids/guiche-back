@@ -49,17 +49,24 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public void activateUser(Long id) {
-        UsuarioRepository.activateUser(id);
+        Usuario usuario = UsuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        usuario.setAtivo(true);
+        UsuarioRepository.save(usuario);
     }
 
     @Override
     public void deactivateUser(Long id) {
-        UsuarioRepository.deactivateUser(id);
+        Usuario usuario = UsuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        usuario.setAtivo(false);
+        UsuarioRepository.save(usuario);
     }
 
     @Override
-    public boolean validateUserPassword(Long id, String password) {
-        Usuario usuario = findById(id);
-        return usuario.getSenha().equals(password);
+    public boolean validateUserPassword(String nome, String password) {
+        Usuario usuario = UsuarioRepository.findByNome(nome);
+        if (usuario != null && usuario.getSenha().equals(password)) {
+            return true;
+        }
+        return false;
     }
 }
