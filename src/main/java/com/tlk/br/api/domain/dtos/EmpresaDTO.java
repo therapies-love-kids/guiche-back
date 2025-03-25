@@ -1,20 +1,49 @@
 package com.tlk.br.api.domain.dtos;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 
 public class EmpresaDTO {
+
+    @Schema(description = "Id do diretor", example = "1", required = true)
     private Long diretor_colaborador_id;
+
+    @Schema(description = "Ativo", example = "true", required = true)
     private boolean ativo;
+
+    @Schema(description = "CNPJ", example = "123456789", required = true)
     private String cnpj;
+
+    @Schema(description = "Razao social", example = "Empresa", required = true)
     private String razao_social;
+
+    @Schema(description = "Nome fantasia", example = "Empresa", required = true)
     private String nome_fantasia;
+
+    @Schema(description = "CEP", example = "12345678", required = true)
     private String cep;
+
+    @Schema(description = "UF", example = "SP", required = true)
     private String uf;
+
+    @Schema(description = "Cidade", example = "Sao Paulo", required = true)
     private String cidade;
+
+    @Schema(description = "Bairro", example = "Centro", required = true)
     private String bairro;
+
+    @Schema(description = "Logradouro", example = "Rua", required = true)
     private String logradouro;
+
+    @Schema(description = "Numero", example = "123", required = true)
     private String numero;
+
+    @Schema(description = "Complemento", example = "Casa", required = true)
     private String complemento;
+
+    @Schema(description = "Prefixo da unidade", example = "E001", required = true)
     private String unidade_prefixo;
+
+    @Schema(description = "Nome da unidade", example = "Unidade", required = true)
     private String unidade_nome;
 
     public EmpresaDTO() {
