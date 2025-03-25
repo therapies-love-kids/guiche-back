@@ -40,6 +40,7 @@ public class PagamentoController {
         pagamentoService.findById(pagamentoDTO.getId());
     }
 
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         pagamentoService.delete(id);
         return ResponseEntity.noContent().build();
