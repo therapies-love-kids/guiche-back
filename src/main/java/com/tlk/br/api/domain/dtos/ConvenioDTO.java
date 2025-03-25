@@ -1,11 +1,16 @@
 package com.tlk.br.api.domain.dtos;
 
-
+import io.swagger.v3.oas.annotations.media.Schema;
 
 public class ConvenioDTO {
 
+    @Schema(description = "Valor para verificar se o convenio está ativo", example = "true", required = true)
     private boolean ativo;
+
+    @Schema(description = "Nome do convenio", example = "Convenio Médico de Anápolis", required = true)
     private String nome;
+
+    @Schema(description = "Nome curto do convenio", example = "Convenio", required = true)
     private String nome_curto;
 
     
