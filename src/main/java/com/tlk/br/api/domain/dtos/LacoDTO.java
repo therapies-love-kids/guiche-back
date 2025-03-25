@@ -2,12 +2,21 @@ package com.tlk.br.api.domain.dtos;
 
 import java.util.Date;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 
 public class LacoDTO {
 
+    @Schema(description = "Id do responsavel", example = "1", required = true)
     private Long paciente_id;
+
+    @Schema(description = "Id do responsavel", example = "1", required = true)
     private Long responsavel_id;
+
+    @Schema(description = "Data e hora de criacao do laco", example = "2021-01-01 00:00:00", required = true)
     private Date data_hora_criacao;
+
+    @Schema(description = "Tipo", example = "Boleto", required = true)
     private String tipo;
 
     public LacoDTO() {
