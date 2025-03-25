@@ -2,6 +2,7 @@ package com.tlk.br.api.domain.entitites;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +15,8 @@ public class Laco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pk;
-    private Long paciente_id;
+    @Column(name = "paciente_id")
+    private Long pacienteId;
     private Long responsavel_id;
     private Date data_hora_criacao;
     private String tipo;
@@ -30,12 +32,12 @@ public class Laco {
         this.pk = pk;
     }
 
-    public Long getPaciente_id() {
-        return this.paciente_id;
+    public Long getPacienteId() {
+        return this.pacienteId;
     }
 
-    public void setPaciente_id(Long paciente_id) {
-        this.paciente_id = paciente_id;
+    public void setPacienteId(Long paciente_id) {
+        this.pacienteId = paciente_id;
     }
 
     public Long getResponsavel_id() {

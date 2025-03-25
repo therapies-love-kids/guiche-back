@@ -5,7 +5,7 @@ public class EmpresaDTO {
     private Long diretor_colaborador_id;
     private boolean ativo;
     private String cnpj;
-    private String razão_social;
+    private String razao_social;
     private String nome_fantasia;
     private String cep;
     private String uf;
@@ -44,13 +44,14 @@ public class EmpresaDTO {
         this.cnpj = cnpj;
     }
 
-    public String getRazãO_social() {
-        return this.razão_social;
+    public String getRazao_social() {
+        return this.razao_social;
     }
 
-    public void setRazãO_social(String razão_social) {
-        this.razão_social = razão_social;
+    public void setRazao_social(String razao_social) {
+        this.razao_social = razao_social;
     }
+
 
     public String getNome_fantasia() {
         return this.nome_fantasia;
@@ -130,6 +131,11 @@ public class EmpresaDTO {
 
     public void setUnidade_nome(String unidade_nome) {
         this.unidade_nome = unidade_nome;
+    }
+
+    public Long getId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getId'");
     }
 
 }

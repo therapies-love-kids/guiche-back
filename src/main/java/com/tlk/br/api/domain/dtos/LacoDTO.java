@@ -45,4 +45,9 @@ public class LacoDTO {
         this.tipo = tipo;
     }
 
+    public Long getId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getId'");
+    }
+
 }

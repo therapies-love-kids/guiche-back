@@ -1,5 +1,6 @@
 package com.tlk.br.api.domain.entitites;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,8 +18,10 @@ public class Empresa {
     private Long diretor_colaborador_id;
     private boolean ativo;
     private String cnpj;
-    private String razão_social;
-    private String nome_fantasia;
+    @Column(name = "razao_social")
+    private String razaoSocial;
+    @Column(name = "nome_fantasia")
+    private String nomeFantasia;
     private String cep;
     private String uf;
     private String cidade;
@@ -26,8 +29,10 @@ public class Empresa {
     private String logradouro;
     private String numero;
     private String complemento;
-    private String unidade_prefixo;
-    private String unidade_nome;
+    @Column(name = "unidade_prefixo")
+    private String unidadePrefixo;
+    @Column(name = "unidade_nome")
+    private String unidadeNome;
 
     public Empresa() {
     }
@@ -56,6 +61,23 @@ public class Empresa {
         this.diretor_colaborador_id = diretor_colaborador_id;
     }
 
+    public String getNomeFantasia() {
+        return this.nomeFantasia;
+    }
+
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
+    }
+
+    public String getRazaoSocial() {
+        return this.razaoSocial;
+    }
+
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+    }
+
+
     public boolean isAtivo() {
         return this.ativo;
     }
@@ -72,21 +94,8 @@ public class Empresa {
         this.cnpj = cnpj;
     }
 
-    public String getRazãO_social() {
-        return this.razão_social;
-    }
 
-    public void setRazãO_social(String razão_social) {
-        this.razão_social = razão_social;
-    }
-
-    public String getNome_fantasia() {
-        return this.nome_fantasia;
-    }
-
-    public void setNome_fantasia(String nome_fantasia) {
-        this.nome_fantasia = nome_fantasia;
-    }
+    
 
     public String getCep() {
         return this.cep;
@@ -144,20 +153,20 @@ public class Empresa {
         this.complemento = complemento;
     }
 
-    public String getUnidade_prefixo() {
-        return this.unidade_prefixo;
+    public String getUnidadePrefixo() {
+        return this.unidadePrefixo;
     }
 
-    public void setUnidade_prefixo(String unidade_prefixo) {
-        this.unidade_prefixo = unidade_prefixo;
+    public void setUnidadePrefixo(String unidade_prefixo) {
+        this.unidadePrefixo = unidade_prefixo;
     }
 
-    public String getUnidade_nome() {
-        return this.unidade_nome;
+    public String getUnidadeNome() {
+        return this.unidadeNome;
     }
 
-    public void setUnidade_nome(String unidade_nome) {
-        this.unidade_nome = unidade_nome;
+    public void setUnidadeNome(String unidade_nome) {
+        this.unidadeNome = unidade_nome;
     }
 
 }

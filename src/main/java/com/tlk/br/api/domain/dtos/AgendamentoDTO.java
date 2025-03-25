@@ -19,6 +19,11 @@ public class AgendamentoDTO {
     public AgendamentoDTO() {
     }
 
+    
+    public Long getId() {
+        return this.paciente_id;
+    }
+
     public Long getEspecialista_colaborador_id() {
         return this.especialista_colaborador_id;
     }

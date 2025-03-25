@@ -2,6 +2,7 @@ package com.tlk.br.api.domain.entitites;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,13 +15,20 @@ public class Agendamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pk;
-    private Long especialista_colaborador_id;
-    private Long paciente_id;
-    private Long recepcionista_colaborador_id;
-    private Long responsavel_id;
-    private String unidade_prefixo;
-    private Date data_hora_criacao;
-    private Date data_hora;
+    @Column(name = "especialista_colaborador_id")
+    private Long especialistaColaboradorId;
+    @Column(name = "paciente_id")
+    private Long pacienteId;
+    @Column(name = "recepcionista_colaborador_id")
+    private Long recepcionistaColaboradorId;
+    @Column(name = "responsavel_id")
+    private Long responsavelId;
+    @Column(name = "unidade_prefixo")
+    private String unidadePrefixo;
+    @Column(name = "data_hora_criacao")
+    private Date dataHoraCriacao;
+    @Column(name = "data_hora")
+    private Date dataHora;
     private String sala;
     private String tipo;
     private String status;
@@ -37,60 +45,60 @@ public class Agendamento {
         this.pk = pk;
     }
 
-    public Long getEspecialista_colaborador_id() {
-        return this.especialista_colaborador_id;
+    public Long getEspecialistaColaboradorId() {
+        return this.especialistaColaboradorId;
     }
 
-    public void setEspecialista_colaborador_id(Long especialista_colaborador_id) {
-        this.especialista_colaborador_id = especialista_colaborador_id;
+    public void setEspecialistaColaboradorId(Long especialista_colaborador_id) {
+        this.especialistaColaboradorId = especialista_colaborador_id;
     }
     
-    public Long getPaciente_id() {
-        return this.paciente_id;
+    public Long getPacienteId() {
+        return this.pacienteId;
     }
 
-    public void setPaciente_id(Long paciente_id) {
-        this.paciente_id = paciente_id;
+    public void setPacienteId(Long paciente_id) {
+        this.pacienteId = paciente_id;
     }
 
-    public Long getRecepcionista_colaborador_id() {
-        return this.recepcionista_colaborador_id;
+    public Long getRecepcionistaColaboradorId() {
+        return this.recepcionistaColaboradorId;
     }
 
-    public void setRecepcionista_colaborador_id(Long recepcionista_colaborador_id) {
-        this.recepcionista_colaborador_id = recepcionista_colaborador_id;
+    public void setRecepcionistaColaboradorId(Long recepcionista_colaborador_id) {
+        this.recepcionistaColaboradorId = recepcionista_colaborador_id;
     }
 
-    public Long getResponsavel_id() {
-        return this.responsavel_id;
+    public Long getResponsavelId() {
+        return this.responsavelId;
     }
 
-    public void setResponsavel_id(Long responsavel_id) {
-        this.responsavel_id = responsavel_id;
+    public void setResponsavelId(Long responsavel_id) {
+        this.responsavelId = responsavel_id;
     }
 
-    public String getUnidade_prefixo() {
-        return this.unidade_prefixo;
+    public String getUnidadePrefixo() {
+        return this.unidadePrefixo;
     }
 
-    public void setUnidade_prefixo(String unidade_prefixo) {
-        this.unidade_prefixo = unidade_prefixo;
+    public void setUnidadePrefixo(String unidade_prefixo) {
+        this.unidadePrefixo = unidade_prefixo;
     }
 
-    public Date getData_hora_criacao() {
-        return this.data_hora_criacao;
+    public Date getDataHoraCriacao() {
+        return this.dataHoraCriacao;
     }
 
-    public void setData_hora_criacao(Date data_hora_criacao) {
-        this.data_hora_criacao = data_hora_criacao;
+    public void setDataHoraCriacao(Date data_hora_criacao) {
+        this.dataHoraCriacao = data_hora_criacao;
     }
 
-    public Date getData_hora() {
-        return this.data_hora;
+    public Date getDataHora() {
+        return this.dataHora;
     }
 
-    public void setData_hora(Date data_hora) {
-        this.data_hora = data_hora;
+    public void setDataHora(Date data_hora) {
+        this.dataHora = data_hora;
     }
 
     public String getSala() {
