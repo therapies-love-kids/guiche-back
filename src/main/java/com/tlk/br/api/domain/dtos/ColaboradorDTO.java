@@ -5,37 +5,101 @@ import java.util.Date;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public class ColaboradorDTO {
+
+    @Schema(description = "Id da empresa e unidade", example = "E001", required = true)
     private String empresa_unidade_prefixo;
+
+    @Schema(description = "Ativo", example = "true", required = true)
     private boolean ativo;
+
+    @Schema(description = "Nome completo", example = "Hugo Cauê José Caldeira", required = true)
     private String nome;
+
+    @Schema(description = "Sexo", example = "M", required = true)
     private Character sexo;
+
+    @Schema(description = "Data de nascimento", example = "2000-01-01", required = true)
     private Date data_nascimento;
+
+    @Schema(description = "Local de nascimento", example = "Rio de Janeiro", required = true)
     private String local_nascimento;
+
+    @Schema(description = "Nome completo do pai", example = "Hugo Cauê José Caldeira", required = true)
     private String nome_pai;
+
+    @Schema(description = "Nome completo da mae", example = "Mariana Cauê José Caldeira", required = true)
     private String nome_mae;
+
+    @Schema(description = "Estado civil", example = "Solteiro", required = true)
     private String estado_civil;
+
+    @Schema(description = "Certidao de casamento", example = "123456789", required = true)
     private String certidao_casamento;
+
+    @Schema(description = "CPF", example = "123.456.789-00", required = true)
     private String cpf;
+
+    @Schema(description = "RG", example = "123456789", required = true)
     private String rg;
+
+    @Schema(description = "CNH", example = "123456789", required = true)
     private String cnh;
+
+    @Schema(description = "Numero da Reservista", example = "123456789", required = true)
     private String numero_reservista;
+
+    @Schema(description = "Celular", example = "11999999999", required = true)
     private String celular;
+
+    @Schema(description = "Email", example = "t3BwI@example.com", required = true)
     private String email;
+
+    @Schema(description = "Modo de trabalho", example = "CLT", required = true)
     private String modo_trabalho;
+
+    @Schema(description = "CEP", example = "12345678", required = true)
     private String cep;
+
+    @Schema(description = "UF", example = "GO", required = true)
     private String uf;
+
+    @Schema(description = "Cidade", example = "Goiania", required = true)
     private String cidade;
+
+    @Schema(description = "Bairro", example = "Centro", required = true)
     private String bairro;
+
+    @Schema(description = "Logradouro", example = "Avenida", required = true)
     private String logradouro;
+
+    @Schema(description = "Numero", example = "123", required = true)
     private String numero;
+
+    @Schema(description = "Complemento", example = "Casa", required = true)
     private String complemento;
+
+    @Schema(description = "Titulo profissional", example = "Medico", required = true)
     private String titulo_profissional;
+
+    @Schema(description = "Registro profissional", example = "123456", required = true)
     private String registro_profissional;
+
+    @Schema(description = "Data de admissao", example = "2020-01-01", required = true)
     private Date data_admissao;
+
+    @Schema(description = "Data de demissao", example = "2020-01-01", required = true)
     private Date data_demissao;
+
+    @Schema(description = "PIS", example = "123456789", required = false)
     private String pis;
+
+    @Schema(description = "Setor em que a pessoa trabalha", example = "Terapeutica", required = true)
     private String setor;
+
+    @Schema(description = "Funcao em que a pessoa trabalha", example = "Terapeutica", required = true)
     private String funcao;
+
+    @Schema(description = "Especialidade em que a pessoa trabalha", example = "Terapeutica", required = true)
     private String especialidade;
 
     public ColaboradorDTO() {
@@ -89,7 +153,7 @@ public class ColaboradorDTO {
         this.local_nascimento = local_nascimento;
     }
 
-    @Schema(description = "Nome completo do pai", example = "Hugo Cauê José Caldeira", required = true)
+    
     public String getNome_pai() {
         return this.nome_pai;
     }
