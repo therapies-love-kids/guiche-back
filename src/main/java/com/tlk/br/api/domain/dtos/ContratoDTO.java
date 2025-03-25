@@ -2,19 +2,44 @@ package com.tlk.br.api.domain.dtos;
 
 import java.util.Date;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class ContratoDTO {
 
+    @Schema(description = "Id do responsavel", example = "1", required = true)
     private Long responsavel_id;
+
+    @Schema(description = "Id do paciente", example = "1", required = true)
     private long paciente_id;
+
+    @Schema(description = "Id do documento", example = "1", required = true)
     private Long documento_pk;
+
+    @Schema(description = "Ativo", example = "true", required = true)
     private boolean ativo;
+
+    @Schema(description = "Data e hora de criacao do contrato", example = "2021-01-01 00:00:00", required = true)
     private Date data_hora_criacao;
+
+    @Schema(description = "Cep", example = "12345678", required = true)
     private String cep;
+
+    @Schema(description = "UF", example = "SP", required = true)
     private String uf;
+
+    @Schema(description = "Cidade", example = "Sao Paulo", required = true)
     private String cidade;
+
+    @Schema(description = "Bairro", example = "Centro", required = true)
     private String bairro;
+
+    @Schema(description = "Logradouro", example = "Rua", required = true)
     private String logradouro;
+
+    @Schema(description = "Numero", example = "123", required = true)
     private String numero;
+
+    @Schema(description = "Complemento", example = "Casa", required = true)
     private String complemento;
 
     public ContratoDTO() {
