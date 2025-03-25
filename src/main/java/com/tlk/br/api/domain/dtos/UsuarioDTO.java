@@ -1,11 +1,6 @@
 package com.tlk.br.api.domain.dtos;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "usuario")
 public class UsuarioDTO {
 
     @Schema(description = "Id do colaborador", example = "1", required = true)
