@@ -2,22 +2,51 @@ package com.tlk.br.api.domain.dtos;
 
 import java.util.Date;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 
 public class PacienteDTO {
 
+    @Schema(description = "Id do paciente", example = "1", required = true)
     private Long id;
+
+    @Schema(description = "Prefixo da unidade", example = "E001", required = true)
     private String empresa_unidade_prefixo;
+
+    @Schema(description = "Id do convenio", example = "1", required = true)
     private Long convenio_pk;
+
+    @Schema(description = "Codigo do paciente", example = "1", required = true)
     private String codigo;
+
+    @Schema(description = "Ativo", example = "true", required = true)
     private boolean ativo;
+
+    @Schema(description = "Nome completo", example = "Hugo Cauê José Caldeira", required = true)
     private String nome;
+
+    @Schema(description = "Nome curto", example = "Hugo Caldeira", required = true)
     private String nome_curto;
+
+    @Schema(description = "Sexo", example = "M", required = true)
     private String sexo;
+
+    @Schema(description = "Data de nascimento", example = "2000-01-01", required = true)
     private Date data_nascimento;
+
+    @Schema(description = "Local de nascimento", example = "Rio de Janeiro", required = true)
     private String local_nascimento;
+
+    @Schema(description = "Nome completo do pai", example = "Hugo Cauê José Caldeira", required = true)
     private String certidao_nascimento;
+
+    @Schema(description = "CPF", example = "12345678900", required = true)
     private String cpf;
+
+    @Schema(description = "Numero do convenio", example = "123456789", required = true)
     private String numero_convenio;
+
+    @Schema(description = "Observacoes", example = "Observacoes", required = true)
     private String observacoes;
 
     public PacienteDTO() {
