@@ -2,18 +2,41 @@ package com.tlk.br.api.domain.dtos;
 
 import java.util.Date;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 
 public class AgendamentoDTO {
+    @Schema(description = "Id do avaliador", example = "1", required = true)
     private Long especialista_colaborador_id;
+
+    @Schema(description = "Id do paciente", example = "1", required = true)
     private Long paciente_id;
+
+    @Schema(description = "Id do recepcionista", example = "1", required = true)
     private Long recepcionista_colaborador_id;
+
+    @Schema(description = "Id do responsavel", example = "1", required = true)
     private Long responsavel_id;
+
+    @Schema(description = "Prefixo da unidade", example = "E001", required = true)
     private String unidade_prefixo;
+
+    @Schema(description = "Data e hora de criacao do agendamento", example = "2021-01-01 00:00:00", required = true)
     private Date data_hora_criacao;
+
+    @Schema(description = "Data e hora do agendamento", example = "2021-01-01 00:00:00", required = true)
     private Date data_hora;
+
+    @Schema(description = "Sala", example = "Sala 1", required = true)
     private String sala;
+
+    @Schema(description = "Tipo", example = "Consulta", required = true)
     private String tipo;
+
+    @Schema(description = "Status", example = "Pendente", required = true)
     private String status;
+
+    @Schema(description = "Observacoes", example = "Observacoes", required = true)
     private String observacoes;
 
     public AgendamentoDTO() {
