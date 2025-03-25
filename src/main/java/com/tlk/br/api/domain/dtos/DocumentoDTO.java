@@ -2,13 +2,26 @@ package com.tlk.br.api.domain.dtos;
 
 import java.util.Date;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class DocumentoDTO {
 
+	@Schema(description = "Valor para verificar se o documento está ativo", example = "true", required = true)
     private Boolean ativo;
+
+	@Schema(description = "Id do paciente", example = "1", required = true)
     private Long paciente_id;
+
+	@Schema(description = "Id do colaborador", example = "1", required = true)
     private Long colaborador_id;
+
+	@Schema(description = "Data e hora de criacao do documento", example = "2021-01-01 00:00:00", required = true)
     private Date data_hora_criacao;
+
+	@Schema(description = "Tipo", example = "Boleto", required = true)
     private String tipo;
+
+	@Schema(description = "Caminho do documento", example = "C:\\", required = true)
     private String caminho;
 
     public DocumentoDTO() {
