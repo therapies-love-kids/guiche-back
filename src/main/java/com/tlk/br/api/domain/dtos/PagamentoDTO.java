@@ -2,12 +2,23 @@ package com.tlk.br.api.domain.dtos;
 
 import java.util.Date;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 public class PagamentoDTO { 
 	
+	@Schema(description = "Id do responsavel", example = "1", required = true)
     private Long responsavel_id;
+
+	@Schema(description = "Data e hora de criacao do pagamento", example = "2021-01-01 00:00:00", required = true)
     private Date data_hora_criacao;
+
+	@Schema(description = "Valor", example = "1000", required = true)
     private Long valor;
+
+	@Schema(description = "Tipo", example = "Boleto", required = true)
     private String tipo;
+
+	@Schema(description = "Descricao", example = "Boleto", required = true)
     private String descricao;
 
     public PagamentoDTO() {
