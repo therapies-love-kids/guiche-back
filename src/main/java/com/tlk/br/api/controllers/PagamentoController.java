@@ -1,7 +1,9 @@
 package com.tlk.br.api.controllers;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,8 +40,8 @@ public class PagamentoController {
         pagamentoService.findById(pagamentoDTO.getId());
     }
 
-    @DeleteMapping
-    public void delete(PagamentoDTO pagamentoDTO) {
-        pagamentoService.delete(pagamentoDTO.getId());
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        pagamentoService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
