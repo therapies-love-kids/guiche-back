@@ -15,4 +15,5 @@ public interface UsuarioService {
     void delete(Long id);
     void activateUser(Long id);
     void deactivateUser(Long id);
+    String getProfileByUserName(String username);
 }
