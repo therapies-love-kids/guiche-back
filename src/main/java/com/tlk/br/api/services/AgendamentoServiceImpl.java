@@ -1,49 +1,107 @@
 package com.tlk.br.api.services;
 
-import java.util.List;
-
-import org.springframework.beans.BeanUtils;
+import com.tlk.br.api.domain.entitites.Agendamento;
+import com.tlk.br.api.domain.dtos.AgendamentoDTO;
+import com.tlk.br.api.repositories.AgendamentoRepository;
+import com.tlk.br.api.services.AgendamentoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tlk.br.api.domain.dtos.AgendamentoDTO;
-import com.tlk.br.api.domain.entitites.Agendamento;
-import com.tlk.br.api.repositories.AgendamentoRepository;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AgendamentoServiceImpl implements AgendamentoService {
 
-    private final AgendamentoRepository agendamentoRepository;
+    @Autowired
+    private AgendamentoRepository agendamentoRepository;
 
-    public AgendamentoServiceImpl(AgendamentoRepository agendamentoRepository) {
-        this.agendamentoRepository = agendamentoRepository;
+    @Override
+    public List<AgendamentoDTO> getCurrentAgendamentos() {
+        LocalDate today = LocalDate.now();
+        LocalDateTime startOfDay = today.atStartOfDay();
+        LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
+
+        Timestamp startTimestamp = Timestamp.valueOf(startOfDay);
+        Timestamp endTimestamp = Timestamp.valueOf(endOfDay);
+
+        System.out.println("Buscando agendamentos com status 'em atendimento' entre " + startTimestamp + " e " + endTimestamp);
+
+        List<Agendamento> agendamentos = agendamentoRepository.findByStatusAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
+                "em atendimento", startTimestamp, endTimestamp);
+
+        if (agendamentos.isEmpty()) {
+            System.out.println("Nenhum agendamento encontrado com status 'em atendimento' no dia atual.");
+            return List.of();
+        }
+
+        System.out.println("Agendamentos encontrados: " + agendamentos.size());
+        return agendamentos.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
     @Override
-    public Agendamento save(AgendamentoDTO agendamentoDTO) {
-        Agendamento agendamento = new Agendamento();
-        BeanUtils.copyProperties(agendamentoDTO, agendamento);
+    public List<AgendamentoDTO> getPreviousAgendamentos() {
+        LocalDate today = LocalDate.now();
+        LocalDateTime startOfDay = today.atStartOfDay();
+        LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
+
+        Timestamp startTimestamp = Timestamp.valueOf(startOfDay);
+        Timestamp endTimestamp = Timestamp.valueOf(endOfDay);
+
+        System.out.println("Buscando agendamentos anteriores com status 'finalizado' entre " + startTimestamp + " e " + endTimestamp);
+
+        List<Agendamento> agendamentos = agendamentoRepository.findByStatusAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
+                "finalizado", startTimestamp, endTimestamp);
+
+        return agendamentos.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Agendamento> getWaitingAgendamentos() {
+        LocalDate today = LocalDate.now();
+        LocalDateTime startOfDay = today.atStartOfDay();
+        LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
+
+        Timestamp startTimestamp = Timestamp.valueOf(startOfDay);
+        Timestamp endTimestamp = Timestamp.valueOf(endOfDay);
+
+        System.out.println("Buscando agendamentos com status 'em espera' entre " + startTimestamp + " e " + endTimestamp);
+
+        List<Agendamento> agendamentos = agendamentoRepository.findByStatusAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
+                "em espera", startTimestamp, endTimestamp);
+
+        if (agendamentos.isEmpty()) {
+            System.out.println("Nenhum agendamento encontrado com status 'em espera' no dia atual.");
+            return List.of();
+        }
+
+        System.out.println("Agendamentos em espera encontrados: " + agendamentos.size());
+        return agendamentos;
+    }
+
+    @Override
+    public Agendamento save(Agendamento agendamento) {
         return agendamentoRepository.save(agendamento);
     }
 
     @Override
-    public List<Agendamento> findAll() {
-        return agendamentoRepository.findAll();
-    }
-
-    @Override
-    public Agendamento findById(Long id) {
-        return agendamentoRepository.findById(id).orElseThrow();
-    }
-
-    @Override
-    public void delete(Long id) {
-        agendamentoRepository.deleteById(id);
-    }
-
-    @Override
-    public Agendamento update(Long Id, AgendamentoDTO agendamentoDTO) {
-        Agendamento agendamento = findById(agendamentoDTO.getId());
-        BeanUtils.copyProperties(agendamentoDTO, agendamento);
+    public Agendamento updateStatus(Long id, String status) {
+        Agendamento agendamento = agendamentoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Agendamento não encontrado com ID: " + id));
+        agendamento.setStatus(status);
         return agendamentoRepository.save(agendamento);
+    }
+
+    private AgendamentoDTO convertToDTO(Agendamento agendamento) {
+        AgendamentoDTO dto = new AgendamentoDTO();
+        String codigo = agendamento.getTipo() + agendamento.getPk();
+        dto.setCodigo(codigo);
+        dto.setSala(agendamento.getSala());
+        dto.setDataHoraSala(agendamento.getDataHoraSala());
+        return dto;
     }
 }
