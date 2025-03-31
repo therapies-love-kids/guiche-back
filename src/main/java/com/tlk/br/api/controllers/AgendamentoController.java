@@ -1,65 +1,62 @@
 package com.tlk.br.api.controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.tlk.br.api.domain.dtos.AgendamentoDTO;
 import com.tlk.br.api.domain.entitites.Agendamento;
+import com.tlk.br.api.domain.dtos.AgendamentoDTO;
+import com.tlk.br.api.domain.dtos.StatusUpdateDTO;
 import com.tlk.br.api.services.AgendamentoService;
-
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-
 @RestController
-@RequestMapping("/agendamento")
-@Tag(name = "Agendamento", description = "API de Agendamento")
+@RequestMapping("/agendamentos")
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class AgendamentoController {
-    private final AgendamentoService agendamentoService;
 
-    public AgendamentoController(AgendamentoService agendamentoService) {
-        this.agendamentoService = agendamentoService;
-    }
+    @Autowired
+    private AgendamentoService agendamentoService;
 
     @PostMapping
-    @Operation(summary = "Criar um novo agendamento")
-    public ResponseEntity<Agendamento> save(@RequestBody AgendamentoDTO agendamentoDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(agendamentoService.save(agendamentoDTO));
+    public ResponseEntity<Agendamento> createAgendamento(@RequestBody Agendamento agendamento) {
+        if (agendamento.getEspecialistaColaboradorId() == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        Agendamento savedAgendamento = agendamentoService.save(agendamento);
+        return ResponseEntity.ok(savedAgendamento);
     }
 
-    @GetMapping
-    @Operation(summary = "Buscar todos os agendamentos")
-    public ResponseEntity<List<Agendamento>> findAll() {
-        return ResponseEntity.ok(agendamentoService.findAll());
+    @GetMapping("/current")
+    public ResponseEntity<List<AgendamentoDTO>> getCurrentAgendamentos() {
+        List<AgendamentoDTO> current = agendamentoService.getCurrentAgendamentos();
+        if (current.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(current);
     }
 
-    @GetMapping("/{id}")
-    @Operation(summary = "Buscar um agendamento pelo ID")
-    public ResponseEntity<Agendamento> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(agendamentoService.findById(id));
+    @GetMapping("/previous")
+    public ResponseEntity<List<AgendamentoDTO>> getPreviousAgendamentos() {
+        List<AgendamentoDTO> previous = agendamentoService.getPreviousAgendamentos();
+        return ResponseEntity.ok(previous);
     }
 
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Deletar um agendamento pelo ID")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        agendamentoService.delete(id);
-        return ResponseEntity.noContent().build();
+    @GetMapping("/waiting")
+    public ResponseEntity<List<Agendamento>> getWaitingAgendamentos() {
+        List<Agendamento> waiting = agendamentoService.getWaitingAgendamentos();
+        if (waiting.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(waiting);
     }
 
-    @PutMapping("/{id}")
-    @Operation(summary = "Atualizar um agendamento existente")
-    public ResponseEntity<Agendamento> update(@PathVariable Long id, @RequestBody AgendamentoDTO agendamentoDTO) {
-        return ResponseEntity.ok(agendamentoService.update(id, agendamentoDTO));
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Agendamento> updateStatus(@PathVariable Long id, @RequestBody StatusUpdateDTO statusUpdate) {
+        if (id == null || id <= 0) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        Agendamento updatedAgendamento = agendamentoService.updateStatus(id, statusUpdate.getStatus());
+        return ResponseEntity.ok(updatedAgendamento);
     }
 }
