@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 @Configuration
 public class CorsConfig {
-    private static final Logger logger = LoggerFactory.getLogger(CorsConfig.class);
+    private static final Logger logger = LoggerFactory.getLogger(CorsConfig.class); 
         @Bean
     public WebMvcConfigurer corsConfigurer() {
         logger.info("🚀 Configuração de CORS carregada!");
