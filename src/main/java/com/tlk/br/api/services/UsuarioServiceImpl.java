@@ -62,6 +62,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    public String getProfileByUserName(String userName) {
+        return UsuarioRepository.findByNome(userName).getPerfil();
+    }
+    
+    @Override
     public boolean validateUserPassword(String nome, String password) {
         Usuario usuario = UsuarioRepository.findByNome(nome);
         if (usuario != null && usuario.getSenha().equals(password)) {
