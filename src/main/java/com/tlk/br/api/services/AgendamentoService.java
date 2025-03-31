@@ -1,14 +1,13 @@
 package com.tlk.br.api.services;
 
-import com.tlk.br.api.domain.dtos.AgendamentoDTO;
 import com.tlk.br.api.domain.entitites.Agendamento;
-
+import com.tlk.br.api.domain.dtos.AgendamentoDTO;
 import java.util.List;
 
 public interface AgendamentoService {
-    Agendamento save(AgendamentoDTO agendamentoDTO);
-    List<Agendamento> findAll();
-    Agendamento findById(Long id);
-    void delete(Long Id);
-    Agendamento update(Long id, AgendamentoDTO agendamentoDTO);
+    List<AgendamentoDTO> getCurrentAgendamentos();
+    List<AgendamentoDTO> getPreviousAgendamentos();
+    List<Agendamento> getWaitingAgendamentos(); // Novo método para agendamentos em espera
+    Agendamento save(Agendamento agendamento);
+    Agendamento updateStatus(Long id, String status); // Novo método para atualizar o status
 }
