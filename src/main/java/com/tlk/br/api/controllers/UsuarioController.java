@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tlk.br.api.domain.dtos.UsuarioDTO;
@@ -73,11 +74,16 @@ public class UsuarioController {
         usuarioService.activateUser(id);
         return ResponseEntity.noContent().build();
     }
-    
+
     @PutMapping("/deactivateUser/{id}")
     public ResponseEntity<Usuario> deactivateUser(@PathVariable Long id) {
         usuarioService.deactivateUser(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/getProfileByUserName/{username}")
+    public ResponseEntity<String> getProfileByUserName(@PathVariable("username") String username) {
+        return ResponseEntity.ok(usuarioService.getProfileByUserName(username));
     }
 
 }
