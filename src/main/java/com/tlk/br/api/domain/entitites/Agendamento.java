@@ -1,136 +1,78 @@
 package com.tlk.br.api.domain.entitites;
 
-import java.util.Date;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "agendamento")
 public class Agendamento {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pk;
-    @Column(name = "especialista_colaborador_id")
-    private Long especialistaColaboradorId;
+    private Integer pk;
+
+    @Column(name = "especialista_colaborador_id", nullable = false)
+    private Integer especialistaColaboradorId;
+
     @Column(name = "paciente_id")
-    private Long pacienteId;
+    private Integer pacienteId;
+
     @Column(name = "recepcionista_colaborador_id")
-    private Long recepcionistaColaboradorId;
+    private Integer recepcionistaColaboradorId;
+
     @Column(name = "responsavel_id")
-    private Long responsavelId;
+    private Integer responsavelId;
+
     @Column(name = "unidade_prefixo")
     private String unidadePrefixo;
+
     @Column(name = "data_hora_criacao")
-    private Date dataHoraCriacao;
-    @Column(name = "data_hora")
-    private Date dataHora;
-    private String sala;
+    private Timestamp dataHoraCriacao;
+
+    @Column(name = "data_hora_sala")
+    @JsonProperty("data_hora")
+    private Timestamp dataHoraSala;
+
     private String tipo;
     private String status;
     private String observacoes;
+    private String sala;
 
-    public Agendamento() {
-    }
-    
-    public Long getPk() {
-        return this.pk;
-    }
+    // Getters e setters
+    public Integer getPk() { return pk; }
+    public void setPk(Integer pk) { this.pk = pk; }
 
-    public void setPk(Long pk) {
-        this.pk = pk;
-    }
+    public Integer getEspecialistaColaboradorId() { return especialistaColaboradorId; }
+    public void setEspecialistaColaboradorId(Integer especialistaColaboradorId) { this.especialistaColaboradorId = especialistaColaboradorId; }
 
-    public Long getEspecialistaColaboradorId() {
-        return this.especialistaColaboradorId;
-    }
+    public Integer getPacienteId() { return pacienteId; }
+    public void setPacienteId(Integer pacienteId) { this.pacienteId = pacienteId; }
 
-    public void setEspecialistaColaboradorId(Long especialista_colaborador_id) {
-        this.especialistaColaboradorId = especialista_colaborador_id;
-    }
-    
-    public Long getPacienteId() {
-        return this.pacienteId;
-    }
+    public Integer getRecepcionistaColaboradorId() { return recepcionistaColaboradorId; }
+    public void setRecepcionistaColaboradorId(Integer recepcionistaColaboradorId) { this.recepcionistaColaboradorId = recepcionistaColaboradorId; }
 
-    public void setPacienteId(Long paciente_id) {
-        this.pacienteId = paciente_id;
-    }
+    public Integer getResponsavelId() { return responsavelId; }
+    public void setResponsavelId(Integer responsavelId) { this.responsavelId = responsavelId; }
 
-    public Long getRecepcionistaColaboradorId() {
-        return this.recepcionistaColaboradorId;
-    }
+    public String getUnidadePrefixo() { return unidadePrefixo; }
+    public void setUnidadePrefixo(String unidadePrefixo) { this.unidadePrefixo = unidadePrefixo; }
 
-    public void setRecepcionistaColaboradorId(Long recepcionista_colaborador_id) {
-        this.recepcionistaColaboradorId = recepcionista_colaborador_id;
-    }
+    public Timestamp getDataHoraCriacao() { return dataHoraCriacao; }
+    public void setDataHoraCriacao(Timestamp dataHoraCriacao) { this.dataHoraCriacao = dataHoraCriacao; }
 
-    public Long getResponsavelId() {
-        return this.responsavelId;
-    }
+    public Timestamp getDataHoraSala() { return dataHoraSala; }
+    public void setDataHoraSala(Timestamp dataHoraSala) { this.dataHoraSala = dataHoraSala; }
 
-    public void setResponsavelId(Long responsavel_id) {
-        this.responsavelId = responsavel_id;
-    }
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
 
-    public String getUnidadePrefixo() {
-        return this.unidadePrefixo;
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public void setUnidadePrefixo(String unidade_prefixo) {
-        this.unidadePrefixo = unidade_prefixo;
-    }
+    public String getObservacoes() { return observacoes; }
+    public void setObservacoes(String observacoes) { this.observacoes = observacoes; }
 
-    public Date getDataHoraCriacao() {
-        return this.dataHoraCriacao;
-    }
-
-    public void setDataHoraCriacao(Date data_hora_criacao) {
-        this.dataHoraCriacao = data_hora_criacao;
-    }
-
-    public Date getDataHora() {
-        return this.dataHora;
-    }
-
-    public void setDataHora(Date data_hora) {
-        this.dataHora = data_hora;
-    }
-
-    public String getSala() {
-        return this.sala;
-    }
-
-    public void setSala(String sala) {
-        this.sala = sala;
-    }
-
-    public String getTipo() {
-        return this.tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getStatus() {
-        return this.status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getObservacoes() {
-        return this.observacoes;
-    }
-
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
-    }
+    public String getSala() { return sala; }
+    public void setSala(String sala) { this.sala = sala; }
 }
- 
