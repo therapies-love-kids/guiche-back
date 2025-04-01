@@ -12,26 +12,20 @@ import com.tlk.br.api.domain.entitites.Agendamento;
 
 @Repository
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> {
-    @Query("SELECT a FROM Agendamento a WHERE a.status = :status " +
-           "AND a.dataHoraSala BETWEEN :start AND :end " +
-           "ORDER BY a.dataHoraSala DESC")
-    Agendamento findTopByStatusAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
-            @Param("status") String status,
-            @Param("start") Timestamp start,
-            @Param("end") Timestamp end);
-
-    @Query("SELECT a FROM Agendamento a WHERE a.status = :status " +
-           "AND a.dataHoraSala BETWEEN :start AND :end " +
-           "ORDER BY a.dataHoraSala DESC")
-    List<Agendamento> findByStatusAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
-            @Param("status") String status,
-            @Param("start") Timestamp start,
-            @Param("end") Timestamp end);
-
-    List<Agendamento> findByStatusAndDataHoraSalaBetweenAndEspecialistaColaboradorIdOrderByDataHoraSalaDesc(
-            String string, Timestamp startTimestamp, Timestamp endTimestamp, Long colaborador_id);
+       List<Agendamento> findByStatusAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
+              String status, Timestamp start, Timestamp end);
   
-      // Novo método para agendamentos "finalizados" filtrados por colaborador
+      List<Agendamento> findByStatusAndDataHoraSalaBetweenOrderByDataHoraSalaAsc(
+              String status, Timestamp start, Timestamp end);
+  
       List<Agendamento> findByStatusAndEspecialistaColaboradorIdAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
               String status, Long especialistaColaboradorId, Timestamp start, Timestamp end);
+  
+      // Novo método para buscar agendamentos por colaborador e data específica
+      @Query("SELECT a FROM Agendamento a WHERE a.especialistaColaboradorId = :colaboradorId " +
+             "AND DATE(a.dataHoraSala) = DATE(:data) " +
+             "ORDER BY a.dataHoraSala DESC")
+      List<Agendamento> findByEspecialistaColaboradorIdAndDataHoraSalaDate(
+              @Param("colaboradorId") Long colaboradorId,
+              @Param("data") Timestamp data);
 }
