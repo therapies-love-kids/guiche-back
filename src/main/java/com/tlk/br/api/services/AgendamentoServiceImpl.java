@@ -71,7 +71,7 @@ public class AgendamentoServiceImpl implements AgendamentoService {
 
         System.out.println("Buscando agendamentos com status 'em espera' entre " + startTimestamp + " e " + endTimestamp);
 
-        List<Agendamento> agendamentos = agendamentoRepository.findByStatusAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
+        List<Agendamento> agendamentos = agendamentoRepository.findByStatusAndDataHoraSalaBetweenOrderByDataHoraSalaAsc(
                 "em espera", startTimestamp, endTimestamp);
 
         if (agendamentos.isEmpty()) {
@@ -94,6 +94,22 @@ public class AgendamentoServiceImpl implements AgendamentoService {
                 .orElseThrow(() -> new RuntimeException("Agendamento não encontrado com ID: " + id));
         agendamento.setStatus(status);
         return agendamentoRepository.save(agendamento);
+    }
+
+    @Override
+    public List<AgendamentoDTO> getAgendamentosByDateAndColaborador(Long especialistaColaboradorId, Timestamp data) {
+        System.out.println("Buscando agendamentos para o colaborador " + especialistaColaboradorId + " na data " + data);
+
+        List<Agendamento> agendamentos = agendamentoRepository.findByEspecialistaColaboradorIdAndDataHoraSalaDate(
+                especialistaColaboradorId, data);
+
+        if (agendamentos.isEmpty()) {
+            System.out.println("Nenhum agendamento encontrado para o colaborador " + especialistaColaboradorId + " na data " + data);
+            return List.of();
+        }
+
+        System.out.println("Agendamentos encontrados: " + agendamentos.size());
+        return agendamentos.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
     private AgendamentoDTO convertToDTO(Agendamento agendamento) {
