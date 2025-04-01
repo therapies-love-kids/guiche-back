@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
@@ -60,5 +61,22 @@ public class AgendamentoController {
         }
         Agendamento updatedAgendamento = agendamentoService.updateStatus(id, statusUpdate.getStatus());
         return ResponseEntity.ok(updatedAgendamento);
+    }
+
+    @GetMapping("/by-date-and-colaborador")
+    public ResponseEntity<List<AgendamentoDTO>> getAgendamentosByDateAndColaborador(
+            @RequestParam("colaboradorId") Long colaboradorId,
+            @RequestParam("data") String data) {
+        try {
+            // Converte a string de data (ex: "2025-03-31") para Timestamp
+            Timestamp timestamp = Timestamp.valueOf(data + " 00:00:00");
+            List<AgendamentoDTO> agendamentos = agendamentoService.getAgendamentosByDateAndColaborador(colaboradorId, timestamp);
+            if (agendamentos.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.ok(agendamentos);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
     }
 }
