@@ -21,7 +21,7 @@ public class AgendamentoServiceImpl implements AgendamentoService {
     private AgendamentoRepository agendamentoRepository;
 
     @Override
-    public List<AgendamentoDTO> getCurrentAgendamentos() {
+    public List<AgendamentoDTO> getCurrentAgendamentos(Long especialistaColaboradorId) {
         LocalDate today = LocalDate.now();
         LocalDateTime startOfDay = today.atStartOfDay();
         LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
@@ -29,13 +29,13 @@ public class AgendamentoServiceImpl implements AgendamentoService {
         Timestamp startTimestamp = Timestamp.valueOf(startOfDay);
         Timestamp endTimestamp = Timestamp.valueOf(endOfDay);
 
-        System.out.println("Buscando agendamentos com status 'em atendimento' entre " + startTimestamp + " e " + endTimestamp);
+        System.out.println("Buscando agendamentos com status 'em atendimento' para o colaborador " + especialistaColaboradorId + " entre " + startTimestamp + " e " + endTimestamp);
 
-        List<Agendamento> agendamentos = agendamentoRepository.findByStatusAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
-                "em atendimento", startTimestamp, endTimestamp);
+        List<Agendamento> agendamentos = agendamentoRepository.findByStatusAndEspecialistaColaboradorIdAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
+                "em atendimento", especialistaColaboradorId, startTimestamp, endTimestamp);
 
         if (agendamentos.isEmpty()) {
-            System.out.println("Nenhum agendamento encontrado com status 'em atendimento' no dia atual.");
+            System.out.println("Nenhum agendamento encontrado com status 'em atendimento' para o colaborador " + especialistaColaboradorId + " no dia atual.");
             return List.of();
         }
 
@@ -44,7 +44,7 @@ public class AgendamentoServiceImpl implements AgendamentoService {
     }
 
     @Override
-    public List<AgendamentoDTO> getPreviousAgendamentos() {
+    public List<AgendamentoDTO> getPreviousAgendamentos(Long especialistaColaboradorId) {
         LocalDate today = LocalDate.now();
         LocalDateTime startOfDay = today.atStartOfDay();
         LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
@@ -52,10 +52,10 @@ public class AgendamentoServiceImpl implements AgendamentoService {
         Timestamp startTimestamp = Timestamp.valueOf(startOfDay);
         Timestamp endTimestamp = Timestamp.valueOf(endOfDay);
 
-        System.out.println("Buscando agendamentos anteriores com status 'finalizado' entre " + startTimestamp + " e " + endTimestamp);
+        System.out.println("Buscando agendamentos anteriores com status 'finalizado' para o colaborador " + especialistaColaboradorId + " entre " + startTimestamp + " e " + endTimestamp);
 
-        List<Agendamento> agendamentos = agendamentoRepository.findByStatusAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
-                "finalizado", startTimestamp, endTimestamp);
+        List<Agendamento> agendamentos = agendamentoRepository.findByStatusAndEspecialistaColaboradorIdAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
+                "finalizado", especialistaColaboradorId, startTimestamp, endTimestamp);
 
         return agendamentos.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
