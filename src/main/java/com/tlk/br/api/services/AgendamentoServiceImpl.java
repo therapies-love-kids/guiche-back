@@ -112,12 +112,32 @@ public class AgendamentoServiceImpl implements AgendamentoService {
         return agendamentos.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
+    @Override
+    public Agendamento updateAgendamentoDetails(Long id, String sala, String tipo, String observacoes) {
+        Agendamento agendamento = agendamentoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Agendamento não encontrado com ID: " + id));
+        agendamento.setSala(sala);
+        agendamento.setTipo(tipo);
+        agendamento.setObservacoes(observacoes);
+        return agendamentoRepository.save(agendamento);
+    }
+
     private AgendamentoDTO convertToDTO(Agendamento agendamento) {
         AgendamentoDTO dto = new AgendamentoDTO();
         String codigo = agendamento.getTipo() + agendamento.getPk();
+        dto.setPk(Long.valueOf(agendamento.getPk()));
         dto.setCodigo(codigo);
         dto.setSala(agendamento.getSala());
-        dto.setDataHoraSala(agendamento.getDataHoraSala());
+        dto.setDataHoraSala(agendamento.getDataHoraSala().toString());
+        dto.setTipo(agendamento.getTipo());
+        dto.setStatus(agendamento.getStatus());
+        dto.setObservacoes(agendamento.getObservacoes());
+        dto.setEspecialistaColaboradorId(Long.valueOf(agendamento.getEspecialistaColaboradorId()));
+        dto.setPacienteId(Long.valueOf(agendamento.getPacienteId()));
+        dto.setRecepcionistaColaboradorId(Long.valueOf(agendamento.getRecepcionistaColaboradorId()));
+        dto.setResponsavelId(Long.valueOf(agendamento.getResponsavelId()));
+        dto.setUnidadePrefixo(agendamento.getUnidadePrefixo());
+        dto.setDataHoraCriacao(agendamento.getDataHoraCriacao().toString());
         return dto;
     }
 }
