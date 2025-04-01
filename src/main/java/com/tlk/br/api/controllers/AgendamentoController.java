@@ -2,6 +2,7 @@ package com.tlk.br.api.controllers;
 
 import com.tlk.br.api.domain.entitites.Agendamento;
 import com.tlk.br.api.domain.dtos.AgendamentoDTO;
+import com.tlk.br.api.domain.dtos.AgendamentoUpdateDetailsDTO;
 import com.tlk.br.api.domain.dtos.StatusUpdateDTO;
 import com.tlk.br.api.services.AgendamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,7 +69,6 @@ public class AgendamentoController {
             @RequestParam("colaboradorId") Long colaboradorId,
             @RequestParam("data") String data) {
         try {
-            // Converte a string de data (ex: "2025-03-31") para Timestamp
             Timestamp timestamp = Timestamp.valueOf(data + " 00:00:00");
             List<AgendamentoDTO> agendamentos = agendamentoService.getAgendamentosByDateAndColaborador(colaboradorId, timestamp);
             if (agendamentos.isEmpty()) {
@@ -78,5 +78,20 @@ public class AgendamentoController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(null);
         }
+    }
+
+    @PutMapping("/{id}/details")
+    public ResponseEntity<Agendamento> updateAgendamentoDetails(
+            @PathVariable Long id,
+            @RequestBody AgendamentoUpdateDetailsDTO updateDetails) {
+        if (id == null || id <= 0) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        Agendamento updatedAgendamento = agendamentoService.updateAgendamentoDetails(
+                id,
+                updateDetails.getSala(),
+                updateDetails.getTipo(),
+                updateDetails.getObservacoes());
+        return ResponseEntity.ok(updatedAgendamento);
     }
 }
