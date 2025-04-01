@@ -28,8 +28,9 @@ public class AgendamentoController {
     }
 
     @GetMapping("/current")
-    public ResponseEntity<List<AgendamentoDTO>> getCurrentAgendamentos() {
-        List<AgendamentoDTO> current = agendamentoService.getCurrentAgendamentos();
+    public ResponseEntity<List<AgendamentoDTO>> getCurrentAgendamentos(
+            @RequestParam("colaboradorId") Long especialistaColaboradorId) {
+        List<AgendamentoDTO> current = agendamentoService.getCurrentAgendamentos(especialistaColaboradorId);
         if (current.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -37,8 +38,9 @@ public class AgendamentoController {
     }
 
     @GetMapping("/previous")
-    public ResponseEntity<List<AgendamentoDTO>> getPreviousAgendamentos() {
-        List<AgendamentoDTO> previous = agendamentoService.getPreviousAgendamentos();
+    public ResponseEntity<List<AgendamentoDTO>> getPreviousAgendamentos(
+            @RequestParam("colaboradorId") Long especialistaColaboradorId) {
+        List<AgendamentoDTO> previous = agendamentoService.getPreviousAgendamentos(especialistaColaboradorId);
         return ResponseEntity.ok(previous);
     }
 
