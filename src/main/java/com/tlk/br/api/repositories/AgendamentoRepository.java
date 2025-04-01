@@ -27,4 +27,11 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> 
             @Param("status") String status,
             @Param("start") Timestamp start,
             @Param("end") Timestamp end);
+
+    List<Agendamento> findByStatusAndDataHoraSalaBetweenAndEspecialistaColaboradorIdOrderByDataHoraSalaDesc(
+            String string, Timestamp startTimestamp, Timestamp endTimestamp, Long colaborador_id);
+  
+      // Novo método para agendamentos "finalizados" filtrados por colaborador
+      List<Agendamento> findByStatusAndEspecialistaColaboradorIdAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
+              String status, Long especialistaColaboradorId, Timestamp start, Timestamp end);
 }
