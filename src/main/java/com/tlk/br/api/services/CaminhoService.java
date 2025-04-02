@@ -1,7 +1,7 @@
 package com.tlk.br.api.services;
 
 import com.tlk.br.api.domain.dtos.CaminhoDTO;
-import com.tlk.br.api.domain.entitites.Caminho;
+import com.tlk.br.api.domain.entities.Caminho;
 
 public interface CaminhoService {
     Caminho save(CaminhoDTO caminhoDTO);
