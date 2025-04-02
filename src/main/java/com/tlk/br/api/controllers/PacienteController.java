@@ -23,7 +23,25 @@ public class PacienteController {
     @PostMapping
     public ResponseEntity<PacienteDTO> save(@Valid @RequestBody PacienteDTO pacienteDTO) {
         Paciente savedPaciente = pacienteService.save(pacienteDTO);
-        return ResponseEntity.status(201).body(pacienteDTO); // 201 Created
+
+        // Criar um novo DTO com os valores da entidade salva
+        PacienteDTO responseDTO = new PacienteDTO();
+        responseDTO.setPk(savedPaciente.getPk());
+        responseDTO.setEmpresaUnidadePrefixo(savedPaciente.getEmpresaUnidadePrefixo());
+        responseDTO.setConvenioPk(savedPaciente.getConvenioPk());
+        responseDTO.setCodigo(savedPaciente.getCodigo());
+        responseDTO.setAtivo(savedPaciente.isAtivo());
+        responseDTO.setNome(savedPaciente.getNome());
+        responseDTO.setNomeCurto(savedPaciente.getNomeCurto());
+        responseDTO.setSexo(savedPaciente.getSexo());
+        responseDTO.setDataNascimento(savedPaciente.getDataNascimento());
+        responseDTO.setLocalNascimento(savedPaciente.getLocalNascimento());
+        responseDTO.setCertidaoNascimento(savedPaciente.getCertidaoNascimento());
+        responseDTO.setCpf(savedPaciente.getCpf());
+        responseDTO.setNumeroConvenio(savedPaciente.getNumeroConvenio());
+        responseDTO.setObservacoes(savedPaciente.getObservacoes());
+
+        return ResponseEntity.status(201).body(responseDTO); // 201 Created
     }
 
     @GetMapping("/{pk}")
@@ -41,7 +59,25 @@ public class PacienteController {
         if (updatedPaciente == null) {
             return ResponseEntity.notFound().build(); // 404 Not Found
         }
-        return ResponseEntity.ok(pacienteDTO); // 200 OK
+
+        // Criar um novo DTO com os valores da entidade atualizada
+        PacienteDTO responseDTO = new PacienteDTO();
+        responseDTO.setPk(updatedPaciente.getPk());
+        responseDTO.setEmpresaUnidadePrefixo(updatedPaciente.getEmpresaUnidadePrefixo());
+        responseDTO.setConvenioPk(updatedPaciente.getConvenioPk());
+        responseDTO.setCodigo(updatedPaciente.getCodigo());
+        responseDTO.setAtivo(updatedPaciente.isAtivo());
+        responseDTO.setNome(updatedPaciente.getNome());
+        responseDTO.setNomeCurto(updatedPaciente.getNomeCurto());
+        responseDTO.setSexo(updatedPaciente.getSexo());
+        responseDTO.setDataNascimento(updatedPaciente.getDataNascimento());
+        responseDTO.setLocalNascimento(updatedPaciente.getLocalNascimento());
+        responseDTO.setCertidaoNascimento(updatedPaciente.getCertidaoNascimento());
+        responseDTO.setCpf(updatedPaciente.getCpf());
+        responseDTO.setNumeroConvenio(updatedPaciente.getNumeroConvenio());
+        responseDTO.setObservacoes(updatedPaciente.getObservacoes());
+
+        return ResponseEntity.ok(responseDTO); // 200 OK
     }
 
     @DeleteMapping("/{pk}")
