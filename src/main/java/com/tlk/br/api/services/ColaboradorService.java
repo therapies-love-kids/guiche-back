@@ -1,7 +1,7 @@
 package com.tlk.br.api.services;
 
 import com.tlk.br.api.domain.dtos.ColaboradorDTO;
-import com.tlk.br.api.domain.entitites.Colaborador;
+import com.tlk.br.api.domain.entities.Colaborador;
 
 import java.util.List;
 
