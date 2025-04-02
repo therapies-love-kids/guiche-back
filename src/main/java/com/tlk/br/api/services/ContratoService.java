@@ -1,7 +1,7 @@
 package com.tlk.br.api.services;
 
 import com.tlk.br.api.domain.dtos.ContratoDTO;
-import com.tlk.br.api.domain.entitites.Contrato;
+import com.tlk.br.api.domain.entities.Contrato;
 
 public interface ContratoService {
 
