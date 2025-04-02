@@ -1,84 +1,86 @@
 package com.tlk.br.api.domain.dtos;
 
-import java.util.Date;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.util.Date;
 
 public class PacienteDTO {
 
-    @Schema(description = "Id do paciente", example = "1", required = true)
-    private Long id;
+    @Schema(description = "Chave primária gerada automaticamente", example = "1")
+    private Long pk;
 
-    @Schema(description = "Prefixo da unidade", example = "E001", required = true)
-    private String empresa_unidade_prefixo;
+    @Schema(description = "Prefixo da unidade da empresa", example = "E001")
+    private String empresaUnidadePrefixo;
 
-    @Schema(description = "Id do convenio", example = "1", required = true)
-    private Long convenio_pk;
+    @Schema(description = "Chave primária do convênio", example = "1")
+    private Long convenioPk;
 
-    @Schema(description = "Codigo do paciente", example = "1", required = true)
+    @Schema(description = "Código do paciente", example = "PAC001")
     private String codigo;
 
-    @Schema(description = "Ativo", example = "true", required = true)
+    @Schema(description = "Indica se o paciente está ativo", example = "true")
     private boolean ativo;
 
-    @Schema(description = "Nome completo", example = "Hugo Cauê José Caldeira", required = true)
+    @Schema(description = "Nome completo do paciente", example = "João Silva")
     private String nome;
 
-    @Schema(description = "Nome curto", example = "Hugo Caldeira", required = true)
-    private String nome_curto;
+    @Schema(description = "Nome curto do paciente", example = "João")
+    private String nomeCurto;
 
-    @Schema(description = "Sexo", example = "M", required = true)
+    @Schema(description = "Sexo do paciente (M/F)", example = "M")
     private String sexo;
 
-    @Schema(description = "Data de nascimento", example = "2000-01-01", required = true)
-    private Date data_nascimento;
+    @Schema(description = "Data de nascimento do paciente", type = "string", format = "date-time", example = "1990-01-01T00:00:00.000Z")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
+    private Date dataNascimento;
 
-    @Schema(description = "Local de nascimento", example = "Rio de Janeiro", required = true)
-    private String local_nascimento;
+    @Schema(description = "Local de nascimento do paciente", example = "São Paulo")
+    private String localNascimento;
 
-    @Schema(description = "Nome completo do pai", example = "Hugo Cauê José Caldeira", required = true)
-    private String certidao_nascimento;
+    @Schema(description = "Número da certidão de nascimento", example = "123456")
+    private String certidaoNascimento;
 
-    @Schema(description = "CPF", example = "12345678900", required = true)
+    @Schema(description = "CPF do paciente", example = "123.456.789-00")
     private String cpf;
 
-    @Schema(description = "Numero do convenio", example = "123456789", required = true)
-    private String numero_convenio;
+    @Schema(description = "Número do convênio", example = "CONV001")
+    private String numeroConvenio;
 
-    @Schema(description = "Observacoes", example = "Observacoes", required = true)
+    @Schema(description = "Observações sobre o paciente", example = "Paciente novo")
     private String observacoes;
 
+    // Construtores
     public PacienteDTO() {
-        
     }
 
-    public Long getId() {
-        return this.id;
+    // Getters e Setters
+    public Long getPk() {
+        return pk;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPk(Long pk) {
+        this.pk = pk;
     }
 
-    public String getEmpresa_unidade_prefixo() {
-        return this.empresa_unidade_prefixo;
+    public String getEmpresaUnidadePrefixo() {
+        return empresaUnidadePrefixo;
     }
 
-    public void setEmpresa_unidade_prefixo(String empresa_unidade_prefixo) {
-        this.empresa_unidade_prefixo = empresa_unidade_prefixo;
+    public void setEmpresaUnidadePrefixo(String empresaUnidadePrefixo) {
+        this.empresaUnidadePrefixo = empresaUnidadePrefixo;
     }
 
-    public Long getConvenio_pk() {
-        return this.convenio_pk;
+    public Long getConvenioPk() {
+        return convenioPk;
     }
 
-    public void setConvenio_pk(Long convenio_pk) {
-        this.convenio_pk = convenio_pk;
+    public void setConvenioPk(Long convenioPk) {
+        this.convenioPk = convenioPk;
     }
 
     public String getCodigo() {
-        return this.codigo;
+        return codigo;
     }
 
     public void setCodigo(String codigo) {
@@ -86,7 +88,7 @@ public class PacienteDTO {
     }
 
     public boolean isAtivo() {
-        return this.ativo;
+        return ativo;
     }
 
     public void setAtivo(boolean ativo) {
@@ -94,75 +96,74 @@ public class PacienteDTO {
     }
 
     public String getNome() {
-        return this.nome;
+        return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public String getNome_curto() {
-        return this.nome_curto;
+    public String getNomeCurto() {
+        return nomeCurto;
     }
 
-    public void setNome_curto(String nome_curto) {
-        this.nome_curto = nome_curto;
+    public void setNomeCurto(String nomeCurto) {
+        this.nomeCurto = nomeCurto;
     }
 
     public String getSexo() {
-        return this.sexo;
+        return sexo;
     }
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
-    public Date getData_nascimento() {
-        return this.data_nascimento;
+    public Date getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setData_nascimento(Date data_nascimento) {
-        this.data_nascimento = data_nascimento;
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
-    public String getLocal_nascimento() {
-        return this.local_nascimento;
+    public String getLocalNascimento() {
+        return localNascimento;
     }
 
-    public void setLocal_nascimento(String local_nascimento) {
-        this.local_nascimento = local_nascimento;
+    public void setLocalNascimento(String localNascimento) {
+        this.localNascimento = localNascimento;
     }
 
-    public String getCertidao_nascimento() {
-        return this.certidao_nascimento;
+    public String getCertidaoNascimento() {
+        return certidaoNascimento;
     }
 
-    public void setCertidao_nascimento(String certidao_nascimento) {
-        this.certidao_nascimento = certidao_nascimento;
+    public void setCertidaoNascimento(String certidaoNascimento) {
+        this.certidaoNascimento = certidaoNascimento;
     }
 
     public String getCpf() {
-        return this.cpf;
+        return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public String getNumero_convenio() {
-        return this.numero_convenio;
+    public String getNumeroConvenio() {
+        return numeroConvenio;
     }
 
-    public void setNumero_convenio(String numero_convenio) {
-        this.numero_convenio = numero_convenio;
+    public void setNumeroConvenio(String numeroConvenio) {
+        this.numeroConvenio = numeroConvenio;
     }
 
     public String getObservacoes() {
-        return this.observacoes;
+        return observacoes;
     }
 
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
     }
-
 }
