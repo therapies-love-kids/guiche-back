@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tlk.br.api.domain.dtos.ResponsavelDTO;
-import com.tlk.br.api.domain.entitites.Responsavel;
+import com.tlk.br.api.domain.entities.Responsavel;
 import com.tlk.br.api.services.ResponsavelService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
