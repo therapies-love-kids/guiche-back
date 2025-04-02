@@ -1,9 +1,9 @@
 package com.tlk.br.api.controllers;
 
-import com.tlk.br.api.domain.entitites.Agendamento;
 import com.tlk.br.api.domain.dtos.AgendamentoDTO;
 import com.tlk.br.api.domain.dtos.AgendamentoUpdateDetailsDTO;
 import com.tlk.br.api.domain.dtos.StatusUpdateDTO;
+import com.tlk.br.api.domain.entities.Agendamento;
 import com.tlk.br.api.services.AgendamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
