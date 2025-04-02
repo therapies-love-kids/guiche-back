@@ -1,7 +1,7 @@
 package com.tlk.br.api.services;
 
-import com.tlk.br.api.domain.entitites.Agendamento;
 import com.tlk.br.api.domain.dtos.AgendamentoDTO;
+import com.tlk.br.api.domain.entities.Agendamento;
 
 import java.sql.Timestamp;
 import java.util.List;
