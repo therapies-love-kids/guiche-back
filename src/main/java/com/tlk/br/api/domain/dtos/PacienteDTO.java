@@ -1,6 +1,7 @@
 package com.tlk.br.api.domain.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.Date;
@@ -11,9 +12,11 @@ public class PacienteDTO {
     private Long pk;
 
     @Schema(description = "Prefixo da unidade da empresa", example = "E001")
+    @JsonProperty("empresa_unidade_prefixo")
     private String empresaUnidadePrefixo;
 
     @Schema(description = "Chave primária do convênio", example = "1")
+    @JsonProperty("convenio_pk")
     private Long convenioPk;
 
     @Schema(description = "Código do paciente", example = "PAC001")
@@ -26,6 +29,7 @@ public class PacienteDTO {
     private String nome;
 
     @Schema(description = "Nome curto do paciente", example = "João")
+    @JsonProperty("nome_curto")
     private String nomeCurto;
 
     @Schema(description = "Sexo do paciente (M/F)", example = "M")
@@ -33,18 +37,22 @@ public class PacienteDTO {
 
     @Schema(description = "Data de nascimento do paciente", type = "string", format = "date-time", example = "1990-01-01T00:00:00.000Z")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
+    @JsonProperty("data_nascimento")
     private Date dataNascimento;
 
     @Schema(description = "Local de nascimento do paciente", example = "São Paulo")
+    @JsonProperty("local_nascimento")
     private String localNascimento;
 
     @Schema(description = "Número da certidão de nascimento", example = "123456")
+    @JsonProperty("certidao_nascimento")
     private String certidaoNascimento;
 
     @Schema(description = "CPF do paciente", example = "123.456.789-00")
     private String cpf;
 
     @Schema(description = "Número do convênio", example = "CONV001")
+    @JsonProperty("numero_convenio")
     private String numeroConvenio;
 
     @Schema(description = "Observações sobre o paciente", example = "Paciente novo")
