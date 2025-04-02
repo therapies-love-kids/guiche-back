@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tlk.br.api.domain.dtos.UsuarioDTO;
-import com.tlk.br.api.domain.entitites.Usuario;
+import com.tlk.br.api.domain.entities.Usuario;
 import com.tlk.br.api.services.UsuarioService;
 
 import io.swagger.v3.oas.annotations.Operation;
