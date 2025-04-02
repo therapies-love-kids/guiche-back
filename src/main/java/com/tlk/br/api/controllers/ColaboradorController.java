@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tlk.br.api.domain.dtos.ColaboradorDTO;
-import com.tlk.br.api.domain.entitites.Colaborador;
+import com.tlk.br.api.domain.entities.Colaborador;
 import com.tlk.br.api.services.ColaboradorService;
 
 import io.swagger.v3.oas.annotations.Operation;
