@@ -3,7 +3,7 @@ package com.tlk.br.api.services;
 import java.util.List;
 
 import com.tlk.br.api.domain.dtos.ResponsavelDTO;
-import com.tlk.br.api.domain.entitites.Responsavel;
+import com.tlk.br.api.domain.entities.Responsavel;
 
 public interface ResponsavelService {
     Responsavel save (ResponsavelDTO ResponsavelDTO);
