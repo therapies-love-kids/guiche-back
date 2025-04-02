@@ -1,21 +1,19 @@
 package com.tlk.br.api.controllers;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.tlk.br.api.domain.dtos.PacienteDTO;
+import com.tlk.br.api.domain.entities.Paciente;
 import com.tlk.br.api.services.PacienteService;
-
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/paciente")
 @Tag(name = "Paciente", description = "Paciente")
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class PacienteController {
+
     private final PacienteService pacienteService;
 
     public PacienteController(PacienteService pacienteService) {
@@ -23,22 +21,35 @@ public class PacienteController {
     }
 
     @PostMapping
-    public void save(PacienteDTO pacienteDTO) {
-        pacienteService.save(pacienteDTO);
+    public ResponseEntity<PacienteDTO> save(@Valid @RequestBody PacienteDTO pacienteDTO) {
+        Paciente savedPaciente = pacienteService.save(pacienteDTO);
+        return ResponseEntity.status(201).body(pacienteDTO); // 201 Created
     }
 
-    @GetMapping
-    public void findById(PacienteDTO pacienteDTO) {
-        pacienteService.findById(pacienteDTO.getId());
+    @GetMapping("/{pk}")
+    public ResponseEntity<PacienteDTO> findById(@PathVariable Long pk) {
+        PacienteDTO pacienteDTO = pacienteService.findById(pk);
+        if (pacienteDTO == null) {
+            return ResponseEntity.notFound().build(); // 404 Not Found
+        }
+        return ResponseEntity.ok(pacienteDTO); // 200 OK
     }
 
     @PutMapping
-    public void update(PacienteDTO pacienteDTO) {
-        pacienteService.update(pacienteDTO);
+    public ResponseEntity<PacienteDTO> update(@Valid @RequestBody PacienteDTO pacienteDTO) {
+        Paciente updatedPaciente = pacienteService.update(pacienteDTO);
+        if (updatedPaciente == null) {
+            return ResponseEntity.notFound().build(); // 404 Not Found
+        }
+        return ResponseEntity.ok(pacienteDTO); // 200 OK
     }
 
-    @DeleteMapping
-    public void delete(PacienteDTO pacienteDTO) {
-        pacienteService.delete(pacienteDTO.getId());
+    @DeleteMapping("/{pk}")
+    public ResponseEntity<Void> delete(@PathVariable Long pk) {
+        boolean deleted = pacienteService.delete(pk);
+        if (!deleted) {
+            return ResponseEntity.notFound().build(); // 404 Not Found
+        }
+        return ResponseEntity.noContent().build(); // 204 No Content
     }
 }
