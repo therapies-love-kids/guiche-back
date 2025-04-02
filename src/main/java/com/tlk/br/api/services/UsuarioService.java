@@ -3,7 +3,7 @@ package com.tlk.br.api.services;
 import java.util.List;
 
 import com.tlk.br.api.domain.dtos.UsuarioDTO;
-import com.tlk.br.api.domain.entitites.Usuario;
+import com.tlk.br.api.domain.entities.Usuario;
 
 public interface UsuarioService {
 
