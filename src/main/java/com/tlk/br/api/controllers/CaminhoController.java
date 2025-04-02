@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tlk.br.api.domain.dtos.CaminhoDTO;
-import com.tlk.br.api.domain.entitites.Caminho;
+import com.tlk.br.api.domain.entities.Caminho;
 import com.tlk.br.api.services.CaminhoService;
 
 import io.swagger.v3.oas.annotations.Operation;
