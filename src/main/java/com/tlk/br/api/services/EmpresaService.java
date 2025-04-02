@@ -3,7 +3,7 @@ package com.tlk.br.api.services;
 import java.util.List;
 
 import com.tlk.br.api.domain.dtos.EmpresaDTO;
-import com.tlk.br.api.domain.entitites.Empresa;
+import com.tlk.br.api.domain.entities.Empresa;
 
 public interface EmpresaService {
     Empresa findById(Long id);
