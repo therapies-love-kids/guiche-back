@@ -1,7 +1,7 @@
 package com.tlk.br.api.services;
 
 import com.tlk.br.api.domain.dtos.LacoDTO;
-import com.tlk.br.api.domain.entitites.Laco;
+import com.tlk.br.api.domain.entities.Laco;
 
 public interface LacoService {
     Laco save (LacoDTO LacoDTO);
