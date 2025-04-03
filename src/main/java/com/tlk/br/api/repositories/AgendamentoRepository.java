@@ -28,4 +28,6 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> 
       List<Agendamento> findByEspecialistaColaboradorIdAndDataHoraSalaDate(
               @Param("colaboradorId") Long colaboradorId,
               @Param("data") Timestamp data);
+
+      List<Agendamento> findByStatus(String string);
 }
