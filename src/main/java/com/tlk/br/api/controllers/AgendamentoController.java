@@ -80,6 +80,16 @@ public class AgendamentoController {
         }
     }
 
+    @GetMapping("/ematendimento")
+    public ResponseEntity<List<AgendamentoDTO>> getAgendamentosEmAtendimento() {
+        List<AgendamentoDTO> agendamentos = agendamentoService.getAllAgendamentosEmAtendimento();
+        if (agendamentos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(agendamentos);
+    }
+    
+
     @PutMapping("/{id}/details")
     public ResponseEntity<Agendamento> updateAgendamentoDetails(
             @PathVariable Long id,
