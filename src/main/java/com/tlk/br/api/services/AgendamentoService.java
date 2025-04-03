@@ -14,4 +14,5 @@ public interface AgendamentoService {
     Agendamento updateStatus(Long id, String status); // Novo método para atualizar o status
     Agendamento updateAgendamentoDetails(Long id, String sala, String tipo, String observacoes);
     List<AgendamentoDTO> getAgendamentosByDateAndColaborador(Long especialistaColaboradorId, Timestamp data);
+    List<AgendamentoDTO> getAllAgendamentosEmAtendimento();
 }
