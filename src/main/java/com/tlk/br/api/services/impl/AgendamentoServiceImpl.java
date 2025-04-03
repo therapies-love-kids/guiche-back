@@ -11,7 +11,9 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,6 +21,26 @@ public class AgendamentoServiceImpl implements AgendamentoService {
 
     @Autowired
     private AgendamentoRepository agendamentoRepository;
+
+    // Mapa para associar cada tipo a um código curto de 3 letras
+    private static final Map<String, String> TIPO_TO_SHORT_CODE = new HashMap<>();
+
+    static {
+        TIPO_TO_SHORT_CODE.put("Fonoaudiologia", "FON");
+        TIPO_TO_SHORT_CODE.put("Psicologia", "PSI");
+        TIPO_TO_SHORT_CODE.put("Terapia Ocupacional", "TOC");
+        TIPO_TO_SHORT_CODE.put("Fisioterapia", "FIS");
+        TIPO_TO_SHORT_CODE.put("Musicoterapia", "MUS");
+        TIPO_TO_SHORT_CODE.put("Psicomotricidade", "PSN");
+        TIPO_TO_SHORT_CODE.put("Pedagogia", "PED");
+        TIPO_TO_SHORT_CODE.put("Neurologia", "NRO");
+        // Adicione mais tipos conforme necessário
+    }
+
+    // Método para obter o código curto a partir do tipo
+    private String getShortCodeForTipo(String tipo) {
+        return TIPO_TO_SHORT_CODE.getOrDefault(tipo, "UNK"); // "UNK" para tipos desconhecidos
+    }
 
     @Override
     public List<AgendamentoDTO> getCurrentAgendamentos(Long especialistaColaboradorId) {
@@ -57,6 +79,13 @@ public class AgendamentoServiceImpl implements AgendamentoService {
         List<Agendamento> agendamentos = agendamentoRepository.findByStatusAndEspecialistaColaboradorIdAndDataHoraSalaBetweenOrderByDataHoraSalaDesc(
                 "finalizado", especialistaColaboradorId, startTimestamp, endTimestamp);
 
+        return agendamentos.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AgendamentoDTO> getAllAgendamentosEmAtendimento() {
+        System.out.println("Buscando todos os agendamentos com status 'em atendimento'");
+        List<Agendamento> agendamentos = agendamentoRepository.findByStatus("em atendimento");
         return agendamentos.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
@@ -124,7 +153,9 @@ public class AgendamentoServiceImpl implements AgendamentoService {
 
     private AgendamentoDTO convertToDTO(Agendamento agendamento) {
         AgendamentoDTO dto = new AgendamentoDTO();
-        String codigo = agendamento.getTipo() + agendamento.getPk();
+        // Obtém o código curto do tipo e concatena com o pk
+        String shortCode = getShortCodeForTipo(agendamento.getTipo());
+        String codigo = shortCode + agendamento.getPk();
         dto.setPk(Long.valueOf(agendamento.getPk()));
         dto.setCodigo(codigo);
         dto.setSala(agendamento.getSala());
