@@ -16,4 +16,7 @@ public interface UsuarioService {
     void activateUser(Long id);
     void deactivateUser(Long id);
     String getProfileByUserName(String username);
+    boolean checkAccess(String nome, String pageProfile);
+    void setUserOnline(String nome);
+    void setUserOffline(String nome);
 }

@@ -68,11 +68,57 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
     
     @Override
-    public boolean validateUserPassword(String nome, String password) {
+    public boolean validateUserPassword(String nome, String senha) {
         Usuario usuario = UsuarioRepository.findByNome(nome);
-        if (usuario != null && usuario.getSenha().equals(password)) {
+        if (usuario != null && usuario.getSenha().equals(senha)) {
+            usuario.setOnline(true); // Define o usuário como online ao fazer login
+            UsuarioRepository.save(usuario);
             return true;
         }
         return false;
+    }
+
+    public boolean checkAccess(String nome, String pageProfile) {
+        Usuario usuario = UsuarioRepository.findByNome(nome);
+        if (usuario == null || !usuario.isOnline()) {
+            return false;
+        }
+
+        // Usuários com perfil "admin" podem acessar qualquer página
+        if (usuario.getPerfil().equalsIgnoreCase("admin")) {
+            usuario.setOnline(false); // Define como offline após verificação
+            UsuarioRepository.save(usuario);
+            return true;
+        }
+
+        // Páginas na pasta "everyone" são acessíveis por todos os perfis
+        if (pageProfile.equalsIgnoreCase("everyone")) {
+            usuario.setOnline(false); // Define como offline após verificação
+            UsuarioRepository.save(usuario);
+            return true;
+        }
+
+        // Verifica se o perfil do usuário corresponde ao nome da pasta da página
+        boolean hasAccess = usuario.getPerfil().equalsIgnoreCase(pageProfile);
+        if (hasAccess) {
+            usuario.setOnline(false); // Define como offline após verificação
+            UsuarioRepository.save(usuario);
+        }
+        return hasAccess;
+    }
+    public void setUserOnline(String nome) {
+        Usuario usuario = UsuarioRepository.findByNome(nome);
+        if (usuario != null) {
+            usuario.setOnline(true);
+            UsuarioRepository.save(usuario);
+        }
+    }
+
+    public void setUserOffline(String nome) {
+        Usuario usuario = UsuarioRepository.findByNome(nome);
+        if (usuario != null) {
+            usuario.setOnline(false);
+            UsuarioRepository.save(usuario);
+        }
     }
 }

@@ -1,6 +1,8 @@
 package com.tlk.br.api.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -64,9 +66,16 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.findAll());
     }
 
-    @PutMapping("/validateUserPassword")
-    public ResponseEntity<Boolean> validateUserPassword(String nome, String password) {
-        return ResponseEntity.ok(usuarioService.validateUserPassword(nome, password));
+    @PostMapping("/validateUserPassword")
+    public ResponseEntity<Map<String, String>> validateUserPassword(@RequestParam String nome, @RequestParam String senha) {
+        boolean isValid = usuarioService.validateUserPassword(nome, senha);
+        if (isValid) {
+            Map<String, String> response = new HashMap<>();
+            response.put("perfil", usuarioService.getProfileByUserName(nome));
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Usuário ou senha inválidos"));
+        }
     }
 
     @PutMapping("/activateUser/{id}")
@@ -81,9 +90,31 @@ public class UsuarioController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/getProfileByUserName/{username}")
-    public ResponseEntity<String> getProfileByUserName(@PathVariable("username") String username) {
-        return ResponseEntity.ok(usuarioService.getProfileByUserName(username));
+    @GetMapping("/getProfileByUserName/{nome}")
+    public ResponseEntity<Map<String, String>> getProfileByUserName(@PathVariable String nome) {
+        String perfil = usuarioService.getProfileByUserName(nome);
+        if (perfil != null) {
+            return ResponseEntity.ok(Map.of("perfil", perfil));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "Usuário não encontrado"));
+        }
     }
 
+    @PostMapping("/checkAccess")
+    public ResponseEntity<Map<String, Boolean>> checkAccess(@RequestParam String nome, @RequestParam String pageProfile) {
+        boolean hasAccess = usuarioService.checkAccess(nome, pageProfile);
+        return ResponseEntity.ok(Map.of("hasAccess", hasAccess));
+    }
+
+    @PostMapping("/setUserOnline")
+    public ResponseEntity<Void> setUserOnline(@RequestParam String nome) {
+        usuarioService.setUserOnline(nome);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/setUserOffline")
+    public ResponseEntity<Void> setUserOffline(@RequestParam String nome) {
+        usuarioService.setUserOffline(nome);
+        return ResponseEntity.ok().build();
+    }
 }
