@@ -15,4 +15,6 @@ public interface AgendamentoService {
     Agendamento updateAgendamentoDetails(Long id, String sala, String tipo, String observacoes);
     List<AgendamentoDTO> getAgendamentosByDateAndColaborador(Long especialistaColaboradorId, Timestamp data);
     List<AgendamentoDTO> getAllAgendamentosEmAtendimento();
+    List<AgendamentoDTO> getAllAgendamentos();
+    List<AgendamentoDTO> byUnidadePrefixo(String unidadePrefixo);
 }
