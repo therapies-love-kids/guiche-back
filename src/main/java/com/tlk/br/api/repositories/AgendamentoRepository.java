@@ -30,4 +30,6 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> 
               @Param("data") Timestamp data);
 
       List<Agendamento> findByStatus(String string);
+
+      List<Agendamento> findByUnidadePrefixo(String unidadePrefixo);
 }
