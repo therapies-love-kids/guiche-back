@@ -19,4 +19,5 @@ public interface UsuarioService {
     boolean checkAccess(String nome, String pageProfile);
     void setUserOnline(String nome);
     void setUserOffline(String nome);
+    Usuario findByNome(String nome);
 }
