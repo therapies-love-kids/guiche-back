@@ -91,12 +91,12 @@ public class UsuarioController {
     }
 
     @GetMapping("/getProfileByUserName/{nome}")
-    public ResponseEntity<Map<String, String>> getProfileByUserName(@PathVariable String nome) {
-        String perfil = usuarioService.getProfileByUserName(nome);
-        if (perfil != null) {
-            return ResponseEntity.ok(Map.of("perfil", perfil));
+    public ResponseEntity<Usuario> getProfileByUserName(@PathVariable String nome) {
+        Usuario usuario = usuarioService.findByNome(nome);
+        if (usuario != null) {
+            return ResponseEntity.ok(usuario);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "Usuário não encontrado"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 
