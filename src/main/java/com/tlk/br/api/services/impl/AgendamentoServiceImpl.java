@@ -66,6 +66,31 @@ public class AgendamentoServiceImpl implements AgendamentoService {
     }
 
     @Override
+    public List<AgendamentoDTO> getAllAgendamentos() {
+    System.out.println("Buscando todos os agendamentos");
+    List<Agendamento> agendamentos = agendamentoRepository.findAll();
+    if (agendamentos.isEmpty()) {
+        System.out.println("Nenhum agendamento encontrado.");
+        return List.of();
+    }
+    System.out.println("Agendamentos encontrados: " + agendamentos.size());
+    return agendamentos.stream().map(this::convertToDTO).collect(Collectors.toList());
+
+    }
+
+    @Override
+    public List<AgendamentoDTO> byUnidadePrefixo(String unidadePrefixo) {
+        System.out.println("Buscando agendamentos com unidade prefixo: " + unidadePrefixo);
+        List<Agendamento> agendamentos = agendamentoRepository.findByUnidadePrefixo(unidadePrefixo);
+        if (agendamentos.isEmpty()) {
+            System.out.println("Nenhum agendamento encontrado com unidade prefixo: " + unidadePrefixo);
+            return List.of();
+        }
+        System.out.println("Agendamentos encontrados: " + agendamentos.size());
+        return agendamentos.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+
+    @Override
     public List<AgendamentoDTO> getPreviousAgendamentos(Long especialistaColaboradorId) {
         LocalDate today = LocalDate.now();
         LocalDateTime startOfDay = today.atStartOfDay();
