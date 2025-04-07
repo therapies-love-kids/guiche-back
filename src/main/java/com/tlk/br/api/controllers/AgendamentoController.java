@@ -64,6 +64,24 @@ public class AgendamentoController {
         return ResponseEntity.ok(updatedAgendamento);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<AgendamentoDTO>> getAllAgendamentos() {
+        List<AgendamentoDTO> agendamentos = agendamentoService.getAllAgendamentos();
+        if (agendamentos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(agendamentos);
+    }
+
+    @GetMapping("/by-unidade-prefixo/{unidadePrefixo}")
+    public ResponseEntity<List<AgendamentoDTO>> getAgendamentosByUnidadePrefixo(@PathVariable String unidadePrefixo) {
+        List<AgendamentoDTO> agendamentos = agendamentoService.byUnidadePrefixo(unidadePrefixo);
+        if (agendamentos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(agendamentos);
+    }
+
     @GetMapping("/by-date-and-colaborador")
     public ResponseEntity<List<AgendamentoDTO>> getAgendamentosByDateAndColaborador(
             @RequestParam("colaboradorId") Long colaboradorId,
