@@ -30,6 +30,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    public Usuario findByNome(String nome) {
+        return UsuarioRepository.findByNome(nome);
+    }
+
+    @Override
     public Usuario save(UsuarioDTO usuarioDTO) {
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDTO, usuario);
