@@ -1,8 +1,6 @@
 package com.tlk.br.api.controllers;
 
 import com.tlk.br.api.domain.dtos.AgendamentoDTO;
-import com.tlk.br.api.domain.dtos.AgendamentoUpdateDetailsDTO;
-import com.tlk.br.api.domain.dtos.StatusUpdateDTO;
 import com.tlk.br.api.domain.entities.Agendamento;
 import com.tlk.br.api.services.AgendamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,113 +11,65 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
-@RequestMapping("/agendamentos")
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
+@RequestMapping("/api/agendamentos")
 public class AgendamentoController {
 
     @Autowired
     private AgendamentoService agendamentoService;
 
-    @PostMapping
-    public ResponseEntity<Agendamento> createAgendamento(@RequestBody Agendamento agendamento) {
-        if (agendamento.getEspecialistaColaboradorId() == null) {
-            return ResponseEntity.badRequest().body(null);
-        }
-        Agendamento savedAgendamento = agendamentoService.save(agendamento);
-        return ResponseEntity.ok(savedAgendamento);
+    @GetMapping("/current/{especialistaColaboradorId}")
+    public ResponseEntity<List<AgendamentoDTO>> getCurrentAgendamentos(@PathVariable Long especialistaColaboradorId) {
+        return ResponseEntity.ok(agendamentoService.getCurrentAgendamentos(especialistaColaboradorId));
     }
 
-    @GetMapping("/current")
-    public ResponseEntity<List<AgendamentoDTO>> getCurrentAgendamentos(
-            @RequestParam("colaboradorId") Long especialistaColaboradorId) {
-        List<AgendamentoDTO> current = agendamentoService.getCurrentAgendamentos(especialistaColaboradorId);
-        if (current.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(current);
-    }
-
-    @GetMapping("/previous")
-    public ResponseEntity<List<AgendamentoDTO>> getPreviousAgendamentos(
-            @RequestParam("colaboradorId") Long especialistaColaboradorId) {
-        List<AgendamentoDTO> previous = agendamentoService.getPreviousAgendamentos(especialistaColaboradorId);
-        return ResponseEntity.ok(previous);
+    @GetMapping("/previous/{especialistaColaboradorId}")
+    public ResponseEntity<List<AgendamentoDTO>> getPreviousAgendamentos(@PathVariable Long especialistaColaboradorId) {
+        return ResponseEntity.ok(agendamentoService.getPreviousAgendamentos(especialistaColaboradorId));
     }
 
     @GetMapping("/waiting")
     public ResponseEntity<List<Agendamento>> getWaitingAgendamentos() {
-        List<Agendamento> waiting = agendamentoService.getWaitingAgendamentos();
-        if (waiting.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(waiting);
+        return ResponseEntity.ok(agendamentoService.getWaitingAgendamentos());
+    }
+
+    @PostMapping
+    public ResponseEntity<Agendamento> save(@RequestBody Agendamento agendamento) {
+        return ResponseEntity.ok(agendamentoService.save(agendamento));
     }
 
     @PutMapping("/{id}/status")
-    public ResponseEntity<Agendamento> updateStatus(@PathVariable Long id, @RequestBody StatusUpdateDTO statusUpdate) {
-        if (id == null || id <= 0) {
-            return ResponseEntity.badRequest().body(null);
-        }
-        Agendamento updatedAgendamento = agendamentoService.updateStatus(id, statusUpdate.getStatus());
-        return ResponseEntity.ok(updatedAgendamento);
+    public ResponseEntity<Agendamento> updateStatus(@PathVariable Long id, @RequestParam String status) {
+        return ResponseEntity.ok(agendamentoService.updateStatus(id, status));
     }
-
-    @GetMapping("/all")
-    public ResponseEntity<List<AgendamentoDTO>> getAllAgendamentos() {
-        List<AgendamentoDTO> agendamentos = agendamentoService.getAllAgendamentos();
-        if (agendamentos.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(agendamentos);
-    }
-
-    @GetMapping("/by-unidade-prefixo/{unidadePrefixo}")
-    public ResponseEntity<List<AgendamentoDTO>> getAgendamentosByUnidadePrefixo(@PathVariable String unidadePrefixo) {
-        List<AgendamentoDTO> agendamentos = agendamentoService.byUnidadePrefixo(unidadePrefixo);
-        if (agendamentos.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(agendamentos);
-    }
-
-    @GetMapping("/by-date-and-colaborador")
-    public ResponseEntity<List<AgendamentoDTO>> getAgendamentosByDateAndColaborador(
-            @RequestParam("colaboradorId") Long colaboradorId,
-            @RequestParam("data") String data) {
-        try {
-            Timestamp timestamp = Timestamp.valueOf(data + " 00:00:00");
-            List<AgendamentoDTO> agendamentos = agendamentoService.getAgendamentosByDateAndColaborador(colaboradorId, timestamp);
-            if (agendamentos.isEmpty()) {
-                return ResponseEntity.noContent().build();
-            }
-            return ResponseEntity.ok(agendamentos);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(null);
-        }
-    }
-
-    @GetMapping("/ematendimento")
-    public ResponseEntity<List<AgendamentoDTO>> getAgendamentosEmAtendimento() {
-        List<AgendamentoDTO> agendamentos = agendamentoService.getAllAgendamentosEmAtendimento();
-        if (agendamentos.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(agendamentos);
-    }
-    
 
     @PutMapping("/{id}/details")
     public ResponseEntity<Agendamento> updateAgendamentoDetails(
             @PathVariable Long id,
-            @RequestBody AgendamentoUpdateDetailsDTO updateDetails) {
-        if (id == null || id <= 0) {
-            return ResponseEntity.badRequest().body(null);
-        }
-        Agendamento updatedAgendamento = agendamentoService.updateAgendamentoDetails(
-                id,
-                updateDetails.getSala(),
-                updateDetails.getTipo(),
-                updateDetails.getObservacoes());
-        return ResponseEntity.ok(updatedAgendamento);
+            @RequestParam String sala,
+            @RequestParam String tipo,
+            @RequestParam(required = false) String observacoes) {
+        return ResponseEntity.ok(agendamentoService.updateAgendamentoDetails(id, sala, tipo, observacoes));
+    }
+
+    @GetMapping("/by-date-and-colaborador/{especialistaColaboradorId}")
+    public ResponseEntity<List<AgendamentoDTO>> getAgendamentosByDateAndColaborador(
+            @PathVariable Long especialistaColaboradorId,
+            @RequestParam Timestamp data) {
+        return ResponseEntity.ok(agendamentoService.getAgendamentosByDateAndColaborador(especialistaColaboradorId, data));
+    }
+
+    @GetMapping("/em-atendimento")
+    public ResponseEntity<List<AgendamentoDTO>> getAllAgendamentosEmAtendimento() {
+        return ResponseEntity.ok(agendamentoService.getAllAgendamentosEmAtendimento());
+    }
+
+    @GetMapping
+    public ResponseEntity<List<AgendamentoDTO>> getAllAgendamentos() {
+        return ResponseEntity.ok(agendamentoService.getAllAgendamentos());
+    }
+
+    @GetMapping("/by-unidade-prefixo/{unidadePrefixo}")
+    public ResponseEntity<List<AgendamentoDTO>> byUnidadePrefixo(@PathVariable String unidadePrefixo) {
+        return ResponseEntity.ok(agendamentoService.byUnidadePrefixo(unidadePrefixo));
     }
 }
