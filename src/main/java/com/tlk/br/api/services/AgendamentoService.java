@@ -7,11 +7,12 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public interface AgendamentoService {
-    List<AgendamentoDTO> getCurrentAgendamentos(Long especialistaColaboradorId); // Adicionado parâmetro
-    List<AgendamentoDTO> getPreviousAgendamentos(Long especialistaColaboradorId); // Adicionado parâmetro
-    List<Agendamento> getWaitingAgendamentos(); // Novo método para agendamentos em espera
+
+    List<AgendamentoDTO> getCurrentAgendamentos(Long especialistaColaboradorId);
+    List<AgendamentoDTO> getPreviousAgendamentos(Long especialistaColaboradorId);
+    List<Agendamento> getWaitingAgendamentos();
     Agendamento save(Agendamento agendamento);
-    Agendamento updateStatus(Long id, String status); // Novo método para atualizar o status
+    Agendamento updateStatus(Long id, String status);
     Agendamento updateAgendamentoDetails(Long id, String sala, String tipo, String observacoes);
     List<AgendamentoDTO> getAgendamentosByDateAndColaborador(Long especialistaColaboradorId, Timestamp data);
     List<AgendamentoDTO> getAllAgendamentosEmAtendimento();
